@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search, MapPin, Briefcase, Building2, Bell } from 'lucide-react';
+import { Search, MapPin, Briefcase, Building2, Bell, X } from 'lucide-react';
 import { JobCard } from '@/components/JobCard';
 import { Radar } from '@/components/Radar';
 import { Job } from '@/types';
@@ -171,6 +171,35 @@ export function HomePage() {
               </select>
             </div>
           </div>
+           {/* Active filter chips */}
+           {(appliedKeyword || appliedLocation || appliedJobType || appliedJobFunction) && (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {appliedKeyword && (
+                <span className="inline-flex items-center gap-1.5 bg-shield-navy-lt/10 text-shield-navy-lt text-xs font-medium px-3 py-1.5 rounded-lg border border-shield-navy-lt/30">
+                  {appliedKeyword}
+                  <button onClick={() => { setKeyword(''); setAppliedKeyword(''); }}><X className="h-3 w-3" /></button>
+                </span>
+              )}
+              {appliedLocation && (
+                <span className="inline-flex items-center gap-1.5 bg-shield-navy-lt/10 text-shield-navy-lt text-xs font-medium px-3 py-1.5 rounded-lg border border-shield-navy-lt/30">
+                  {appliedLocation}
+                  <button onClick={() => { setLocation(''); setAppliedLocation(''); }}><X className="h-3 w-3" /></button>
+                </span>
+              )}
+              {appliedJobFunction && (
+                <span className="inline-flex items-center gap-1.5 bg-shield-navy-lt/10 text-shield-navy-lt text-xs font-medium px-3 py-1.5 rounded-lg border border-shield-navy-lt/30">
+                  {appliedJobFunction}
+                  <button onClick={() => { setJobFunction(''); setAppliedJobFunction(''); }}><X className="h-3 w-3" /></button>
+                </span>
+              )}
+              {appliedJobType && (
+                <span className="inline-flex items-center gap-1.5 bg-shield-navy-lt/10 text-shield-navy-lt text-xs font-medium px-3 py-1.5 rounded-lg border border-shield-navy-lt/30">
+                  {appliedJobType}
+                  <button onClick={() => { setJobType(''); setAppliedJobType(''); }}><X className="h-3 w-3" /></button>
+                </span>
+              )}
+            </div>
+          )}
           <button
           onClick={() => {
             setAppliedKeyword(keyword);
