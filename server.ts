@@ -110,7 +110,7 @@ async function startServer() {
       }
 
       const job: any = { ...data };
-      job.tags = JSON.parse(job.tags || "[]");
+      job.tags = job.tags || [];
 
       const date = job.posted_at ? new Date(job.posted_at) : new Date();
       job.postedAt = `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
