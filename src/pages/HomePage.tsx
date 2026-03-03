@@ -8,7 +8,28 @@ import { useTranslation } from '@/lib/i18n';
 export function HomePage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [keyword, setKeyword] = useState('');
+  const [location, setLocation] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [jobFunction, setJobFunction] = useState('');
+  const [appliedKeyword, setAppliedKeyword] = useState('');
+  const [appliedLocation, setAppliedLocation] = useState('');
+  const [appliedJobType, setAppliedJobType] = useState('');
+  const [appliedJobFunction, setAppliedJobFunction] = useState('');
   const { t } = useTranslation();
+
+  const filteredJobs = jobs.filter(job => {
+    const matchesKeyword = appliedKeyword === '' || 
+      job.title.toLowerCase().includes(appliedKeyword.toLowerCase()) || 
+      job.company.toLowerCase().includes(appliedKeyword.toLowerCase());
+    const matchesLocation = appliedLocation === '' || 
+      job.location.toLowerCase().includes(appliedLocation.toLowerCase());
+    const matchesType = appliedJobType === '' || 
+      job.type.toLowerCase() === appliedJobType.toLowerCase();
+    const matchesFunction = appliedJobFunction === '' || 
+      job.tags.some(tag => tag.toLowerCase().includes(appliedJobFunction.toLowerCase()));
+    return matchesKeyword && matchesLocation && matchesType && matchesFunction;
+  });
 
   useEffect(() => {
     fetch('/api/jobs')
@@ -108,40 +129,56 @@ export function HomePage() {
                 type="text" 
                 placeholder={t('search_kw_placeholder')}
                 className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l placeholder:text-shield-text-lm"
+                value={keyword}
+                onChange={e => setKeyword(e.target.value)}
               />
             </div>
             <div className="flex items-center gap-2 bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-2.5 focus-within:border-shield-navy-lt transition-colors">
               <MapPin className="h-4 w-4 text-shield-text-lm opacity-60" />
-              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer">
+              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={location} onChange={e => setLocation(e.target.value)}>
                 <option value="">{t('search_location')}</option>
-                <option>Germany</option>
-                <option>France</option>
-                <option>United Kingdom</option>
-                <option>Czech Republic</option>
-                <option>Poland</option>
-                <option>Remote</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="UK">United Kingdom</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="PL">Poland</option>
+                <option value="Remote">Remote</option>
               </select>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
             <div className="flex items-center gap-2 bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-2.5 focus-within:border-shield-navy-lt transition-colors">
               <Briefcase className="h-4 w-4 text-shield-text-lm opacity-60" />
-              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer">
+              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={jobFunction} onChange={e => setJobFunction(e.target.value)}>
                 <option value="">{t('search_function')}</option>
-                <option>Engineering</option>
-                <option>IT & Cyber</option>
+                <option value="Engineering">Engineering</option>
+                <option value="IT">IT & Cyber</option>
+                <option value="Logistics">Logistics</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Management">Management</option>
+                <option value="Finance">Finance</option>
+                <option value="Admin">Admin</option>
               </select>
             </div>
             <div className="flex items-center gap-2 bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-2.5 focus-within:border-shield-navy-lt transition-colors">
               <Building2 className="h-4 w-4 text-shield-text-lm opacity-60" />
-              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer">
+              <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={jobType} onChange={e => setJobType(e.target.value)}>
                 <option value="">{t('search_type')}</option>
-                <option>Full Time</option>
-                <option>Contract</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Temporary">Temporary</option>
               </select>
             </div>
           </div>
-          <button className="w-full bg-shield-black hover:bg-shield-navy-lt text-white rounded-xl font-heading font-bold text-base py-3.5 uppercase tracking-widest transition-all hover:-translate-y-[1px]">
+          <button
+          onClick={() => {
+            setAppliedKeyword(keyword);
+            setAppliedLocation(location);
+            setAppliedJobType(jobType);
+            setAppliedJobFunction(jobFunction);
+          }}
+          className="w-full bg-shield-black hover:bg-shield-navy-lt text-white rounded-xl font-heading font-bold text-base py-3.5 uppercase tracking-widest transition-all hover:-translate-y-[1px]">
             {t('search_btn')}
           </button>
         </div>
@@ -151,7 +188,7 @@ export function HomePage() {
       <div className="max-w-4xl mx-auto px-4 pb-24">
         <div className="flex items-center justify-between mb-5 pb-4 border-b-[1.5px] border-shield-border-l">
           <p className="font-semibold text-sm text-shield-text-l">
-            <strong className="font-heading text-lg text-shield-navy-lt tracking-wide mr-1">{jobs.length}</strong> 
+            <strong className="font-heading text-lg text-shield-navy-lt tracking-wide mr-1">{filteredJobs.length}</strong> 
             {t('open_positions')}
           </p>
           <select className="bg-white border-[1.5px] border-shield-border-l rounded-lg px-3 py-1.5 text-sm text-shield-text-l outline-none cursor-pointer">
@@ -171,7 +208,7 @@ export function HomePage() {
         <div className="space-y-3">
           {loading ? (
             <div className="text-center py-20 text-shield-text-lm">Loading positions...</div>
-          ) : jobs.map((job, index) => (
+          ) : filteredJobs.map((job, index) => (
             <React.Fragment key={job.id}>
               <JobCard job={job} />
               {/* Alert Banner after the first job */}
