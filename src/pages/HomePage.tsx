@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, MapPin, Briefcase, Building2, Bell, X } from 'lucide-react';
 import { JobCard } from '@/components/JobCard';
 import { Radar } from '@/components/Radar';
@@ -76,14 +77,14 @@ export function HomePage() {
           {/* Category Pills */}
           <div className="flex flex-wrap justify-center gap-2 pb-16">
             {[
-              t('cat_engineering'), 
-              t('cat_it'), 
-              t('cat_trades'), 
-              t('cat_logistics'), 
-              t('cat_management')
+              { label: t('cat_engineering'), value: 'Engineering' },
+              { label: t('cat_it'), value: 'IT' },
+              { label: t('cat_trades'), value: 'Manufacturing' },
+              { label: t('cat_logistics'), value: 'Logistics' },
+              { label: t('cat_management'), value: 'Management' },
             ].map(cat => (
-              <button key={cat} className="inline-flex items-center gap-2 bg-white/5 border border-shield-gray-mid text-shield-silver text-sm font-medium px-4 py-2 rounded-lg hover:bg-shield-navy-lt/20 hover:border-shield-navy-lt/50 hover:text-shield-accent transition-all">
-                {cat}
+              <button key={cat.value} onClick={() => { setJobFunction(cat.value); setAppliedJobFunction(cat.value); }} className="inline-flex items-center gap-2 bg-white/5 border border-shield-gray-mid text-shield-silver text-sm font-medium px-4 py-2 rounded-lg hover:bg-shield-navy-lt/20 hover:border-shield-navy-lt/50 hover:text-shield-accent transition-all">
+                {cat.label}
               </button>
             ))}
           </div>
@@ -102,7 +103,7 @@ export function HomePage() {
         </p>
         <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
           {['Rheinmetall', 'Thales', 'Airbus'].map(company => (
-            <div key={company} className="flex items-center gap-3 bg-white border-[1.5px] border-shield-border-l rounded-xl px-5 py-3 min-w-[195px] cursor-pointer hover:border-shield-navy-lt hover:shadow-[0_4px_20px_rgba(42,82,152,0.1)] hover:-translate-y-0.5 transition-all">
+            <div key={company} onClick={() => { setKeyword(company); setAppliedKeyword(company); }} className="flex items-center gap-3 bg-white border-[1.5px] border-shield-border-l rounded-xl px-5 py-3 min-w-[195px] cursor-pointer hover:border-shield-navy-lt hover:shadow-[0_4px_20px_rgba(42,82,152,0.1)] hover:-translate-y-0.5 transition-all">
               <div className="w-11 h-11 rounded-lg bg-shield-bg-light border border-shield-border-l flex items-center justify-center font-heading font-bold text-sm text-shield-text-l">
                 {company.substring(0, 2).toUpperCase()}
               </div>
@@ -229,9 +230,9 @@ export function HomePage() {
         {/* Hire Banner */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white border-[1.5px] border-shield-border-l border-l-4 border-l-shield-navy-lt rounded-xl p-4 mb-6 gap-4">
           <p className="text-sm text-shield-text-lm" dangerouslySetInnerHTML={{ __html: '🛡️ ' + t('banner_text') }} />
-          <button className="bg-shield-black hover:bg-shield-navy-lt text-white text-sm font-semibold px-5 py-2 rounded-lg whitespace-nowrap transition-colors">
+          <Link to="/post-job" className="bg-shield-black hover:bg-shield-navy-lt text-white text-sm font-semibold px-5 py-2 rounded-lg whitespace-nowrap transition-colors">
             {t('banner_btn')}
-          </button>
+          </Link>
         </div>
 
         <div className="space-y-3">
