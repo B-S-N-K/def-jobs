@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { HomePage } from '@/pages/HomePage';
 import { PostJobPage } from '@/pages/PostJobPage';
@@ -16,7 +16,7 @@ function AppContent() {
     <div className="min-h-screen bg-shield-bg-light text-shield-text-l font-sans selection:bg-shield-navy-lt selection:text-white flex flex-col">
       <Navbar />
       <main className="flex-grow">
-      <Routes>
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/jobs" element={<HomePage scrollToJobs={true} />} />
           <Route path="/jobs/:id" element={<JobDetailPage />} />
@@ -47,9 +47,9 @@ function AppContent() {
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_candidates')}</h4>
               <ul className="space-y-2.5">
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_browse')}</a></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_companies')}</a></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_salary')}</a></li>
+                <li><Link to="/jobs" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_browse')}</Link></li>
+                <li><Link to="/companies" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_companies')}</Link></li>
+                <li><Link to="/salaries" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_salary')}</Link></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_cv')}</a></li>
               </ul>
             </div>
@@ -57,7 +57,7 @@ function AppContent() {
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_employers')}</h4>
               <ul className="space-y-2.5">
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_post')}</a></li>
+                <li><Link to="/post-job" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_post')}</Link></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_pricing')}</a></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_promo')}</a></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_hr')}</a></li>
