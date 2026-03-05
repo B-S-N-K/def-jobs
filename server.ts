@@ -124,6 +124,25 @@ async function startServer() {
     }
   });
 
+  app.get("/api/companies", async (req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from("companies")
+        .select("*")
+        .order("name", { ascending: true });
+
+      if (error) {
+        console.error("Supabase error (companies):", error);
+        return res.status(500).json({ error: "Failed to fetch companies" });
+      }
+
+      res.json(data || []);
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Failed to fetch companies" });
+    }
+  });
+
   app.post("/api/applications", async (req, res) => {
     try {
       const { jobId, name, email, message, cvUrl } = req.body;

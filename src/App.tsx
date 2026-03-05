@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { HomePage } from '@/pages/HomePage';
 import { PostJobPage } from '@/pages/PostJobPage';
+import { CompaniesPage } from '@/pages/CompaniesPage';
+import { SalariesPage } from '@/pages/SalariesPage';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
@@ -14,10 +16,13 @@ function AppContent() {
     <div className="min-h-screen bg-shield-bg-light text-shield-text-l font-sans selection:bg-shield-navy-lt selection:text-white flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <Routes>
+      <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/jobs" element={<HomePage scrollToJobs={true} />} />
           <Route path="/jobs/:id" element={<JobDetailPage />} />
           <Route path="/post-job" element={<PostJobPage />} />
+          <Route path="/companies" element={<CompaniesPage />} />
+          <Route path="/salaries" element={<SalariesPage />} />
           {/* Add more routes as we build them */}
         </Routes>
       </main>

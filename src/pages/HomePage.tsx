@@ -6,7 +6,7 @@ import { Radar } from '@/components/Radar';
 import { Job } from '@/types';
 import { useTranslation } from '@/lib/i18n';
 
-export function HomePage() {
+export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [keyword, setKeyword] = useState('');
@@ -33,11 +33,24 @@ export function HomePage() {
   });
 
   useEffect(() => {
+    if (scrollToJobs) {
+      setTimeout(() => {
+        window.scrollTo({ top: 600, behavior: 'smooth' });
+      }, 100);
+    }
+  }, [scrollToJobs]);
+  
+  useEffect(() => {
     fetch('/api/jobs')
       .then(res => res.json())
       .then(data => {
         setJobs(data);
         setLoading(false);
+        if (scrollToJobs) {
+          setTimeout(() => {
+            window.scrollTo({ top: 600, behavior: 'smooth' });
+          }, 100);
+        }
       })
       .catch(err => {
         console.error("Failed to fetch jobs", err);
