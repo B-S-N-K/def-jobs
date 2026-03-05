@@ -5,6 +5,7 @@ import { HomePage } from '@/pages/HomePage';
 import { PostJobPage } from '@/pages/PostJobPage';
 import { CompaniesPage } from '@/pages/CompaniesPage';
 import { SalariesPage } from '@/pages/SalariesPage';
+import { PricingPage } from '@/pages/PricingPage';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
@@ -23,6 +24,7 @@ function AppContent() {
           <Route path="/post-job" element={<PostJobPage />} />
           <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/salaries" element={<SalariesPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           {/* Add more routes as we build them */}
         </Routes>
       </main>
@@ -58,7 +60,7 @@ function AppContent() {
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_employers')}</h4>
               <ul className="space-y-2.5">
                 <li><Link to="/post-job" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_post')}</Link></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_pricing')}</a></li>
+                <li><Link to="/pricing" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_pricing')}</Link></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_promo')}</a></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_hr')}</a></li>
               </ul>
