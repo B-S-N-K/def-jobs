@@ -28,6 +28,7 @@ async function startServer() {
       const { data, error } = await supabase
         .from("jobs")
         .select("*")
+        .is("deleted_at", null)
         .order("featured", { ascending: false })
         .order("posted_at", { ascending: false });
 
@@ -121,6 +122,116 @@ async function startServer() {
     } catch (error) {
       console.error("Database error:", error);
       res.status(500).json({ error: "Failed to fetch job" });
+    }
+  });
+
+  app.get("/api/admin/trash", async (req, res) => {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("jobs")
+        .select("*")
+        .not("deleted_at", "is", null)
+        .order("deleted_at", { ascending: false });
+      if (error) return res.status(500).json({ error: "Failed to fetch trash" });
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch trash" });
+    }
+  });
+  
+  app.get("/api/admin/applications", async (req, res) => {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("applications")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) return res.status(500).json({ error: "Failed to fetch applications" });
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch applications" });
+    }
+  });
+
+  app.get("/api/admin/alerts", async (req, res) => {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("alerts")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) return res.status(500).json({ error: "Failed to fetch alerts" });
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch alerts" });
+    }
+  });
+
+  app.get("/api/admin/contacts", async (req, res) => {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("contacts")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) return res.status(500).json({ error: "Failed to fetch contacts" });
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch contacts" });
+    }
+  });
+
+  app.delete("/api/jobs/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { error } = await supabaseAdmin
+        .from("jobs")
+        .update({ deleted_at: new Date().toISOString() })
+        .eq("id", id);
+      if (error) return res.status(500).json({ error: "Failed to delete job" });
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete job" });
+    }
+  });
+
+  app.post("/api/jobs/:id/restore", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { error } = await supabaseAdmin
+        .from("jobs")
+        .update({ deleted_at: null })
+        .eq("id", id);
+      if (error) return res.status(500).json({ error: "Failed to restore job" });
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to restore job" });
+    }
+  });
+
+  app.delete("/api/jobs/:id/permanent", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { error } = await supabaseAdmin
+        .from("jobs")
+        .delete()
+        .eq("id", id);
+      if (error) return res.status(500).json({ error: "Failed to permanently delete job" });
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to permanently delete job" });
+    }
+  });
+
+  app.patch("/api/jobs/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { featured } = req.body;
+      const { error } = await supabaseAdmin
+        .from("jobs")
+        .update({ featured })
+        .eq("id", id);
+      if (error) return res.status(500).json({ error: "Failed to update job" });
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update job" });
     }
   });
 

@@ -10,6 +10,8 @@ import { AboutPage } from '@/pages/AboutPage';
 import { PrivacyPage } from '@/pages/PrivacyPage';
 import { TermsPage } from '@/pages/TermsPage';
 import { ContactPage } from '@/pages/ContactPage';
+import { AdminLoginPage } from '@/pages/AdminLoginPage';
+import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
@@ -33,6 +35,9 @@ function AppContent() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/admin" element={<AdminLoginPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           {/* Add more routes as we build them */}
         </Routes>
       </main>

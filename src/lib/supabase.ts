@@ -50,3 +50,4 @@ export function getSupabaseAdminClient(): SupabaseClient {
   return supabaseAdminClient;
 }
 
+export const supabase = typeof window !== 'undefined' ? getSupabaseClient() : null as any;
