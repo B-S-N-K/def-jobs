@@ -6,6 +6,10 @@ import { PostJobPage } from '@/pages/PostJobPage';
 import { CompaniesPage } from '@/pages/CompaniesPage';
 import { SalariesPage } from '@/pages/SalariesPage';
 import { PricingPage } from '@/pages/PricingPage';
+import { AboutPage } from '@/pages/AboutPage';
+import { PrivacyPage } from '@/pages/PrivacyPage';
+import { TermsPage } from '@/pages/TermsPage';
+import { ContactPage } from '@/pages/ContactPage';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
@@ -25,6 +29,10 @@ function AppContent() {
           <Route path="/companies" element={<CompaniesPage />} />
           <Route path="/salaries" element={<SalariesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           {/* Add more routes as we build them */}
         </Routes>
       </main>
@@ -69,10 +77,10 @@ function AppContent() {
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_company')}</h4>
               <ul className="space-y-2.5">
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_about')}</a></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_privacy')}</a></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_terms')}</a></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_contact')}</a></li>
+              <li><Link to="/about" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_about')}</Link></li>
+                <li><Link to="/privacy" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_privacy')}</Link></li>
+                <li><Link to="/terms" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_terms')}</Link></li>
+                <li><Link to="/contact" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_contact')}</Link></li>
               </ul>
             </div>
           </div>

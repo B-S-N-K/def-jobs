@@ -124,6 +124,30 @@ async function startServer() {
     }
   });
 
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { name, email, message } = req.body;
+
+      const { error } = await supabaseAdmin.from("contacts").insert([
+        {
+          name,
+          email,
+          message,
+        },
+      ]);
+
+      if (error) {
+        console.error("Supabase error (contact):", error);
+        return res.status(500).json({ error: "Failed to send message" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Failed to send message" });
+    }
+  });
+  
   app.post("/api/alerts", async (req, res) => {
     try {
       const { email, keyword, location, jobFunction, jobType } = req.body;
