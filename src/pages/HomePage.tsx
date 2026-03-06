@@ -18,7 +18,37 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
   const [appliedJobType, setAppliedJobType] = useState('');
   const [appliedJobFunction, setAppliedJobFunction] = useState('');
   const { t } = useTranslation();
+  const [showAlertModal, setShowAlertModal] = useState(false);
+  const [alertEmail, setAlertEmail] = useState('');
+  const [alertSubmitting, setAlertSubmitting] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(false);
 
+  const handleAlertSubmit = async () => {
+    if (!alertEmail) return;
+    setAlertSubmitting(true);
+    try {
+      await fetch('/api/alerts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: alertEmail,
+          keyword: appliedKeyword,
+          location: appliedLocation,
+          jobFunction: appliedJobFunction,
+          jobType: appliedJobType,
+        }),
+      });
+      setAlertSuccess(true);
+      setTimeout(() => {
+        setShowAlertModal(false);
+        setAlertSuccess(false);
+        setAlertEmail('');
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to create alert', err);
+    }
+    setAlertSubmitting(false);
+  };
   const filteredJobs = jobs.filter(job => {
     const matchesKeyword = appliedKeyword === '' || 
       job.title.toLowerCase().includes(appliedKeyword.toLowerCase()) || 
@@ -276,7 +306,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
                     </div>
                   </div>
                   <div className="relative z-10 w-full md:w-auto flex-shrink-0">
-                    <button className="w-full md:w-auto bg-shield-navy-lt hover:bg-shield-navy-mid text-white text-sm font-semibold px-5 py-2.5 rounded-lg whitespace-nowrap transition-colors shadow-[0_0_15px_rgba(29,78,216,0.3)]">
+                    <button onClick={() => setShowAlertModal(true)} className="w-full md:w-auto bg-shield-navy-lt hover:bg-shield-navy-mid text-white text-sm font-semibold px-5 py-2.5 rounded-lg whitespace-nowrap transition-colors shadow-[0_0_15px_rgba(29,78,216,0.3)]">
                       {t('alert_btn')}
                     </button>
                   </div>
@@ -286,6 +316,41 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
           ))}
         </div>
       </div>
+    {/* Alert Modal */}
+    {showAlertModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-4" onClick={() => setShowAlertModal(false)}>
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-heading font-bold text-xl text-shield-text-l flex items-center gap-2">
+                <Bell className="h-5 w-5 text-[#f59e0b]" />
+                {t('alert_title')}
+              </h3>
+              <button onClick={() => setShowAlertModal(false)}><X className="h-5 w-5 text-shield-text-lm hover:text-shield-text-l" /></button>
+            </div>
+            <p className="text-shield-text-lm text-sm mb-6">{t('alert_sub')}</p>
+            {alertSuccess ? (
+              <div className="text-center py-4 text-green-600 font-semibold">✅ Alert created successfully!</div>
+            ) : (
+              <>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-sm outline-none focus:border-shield-navy-lt mb-4"
+                  value={alertEmail}
+                  onChange={e => setAlertEmail(e.target.value)}
+                />
+                <button
+                  onClick={handleAlertSubmit}
+                  disabled={alertSubmitting}
+                  className="w-full bg-shield-navy-lt hover:bg-shield-navy-mid text-white font-bold py-3 rounded-xl transition-colors"
+                >
+                  {alertSubmitting ? '...' : t('alert_btn')}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

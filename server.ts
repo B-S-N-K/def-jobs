@@ -124,6 +124,32 @@ async function startServer() {
     }
   });
 
+  app.post("/api/alerts", async (req, res) => {
+    try {
+      const { email, keyword, location, jobFunction, jobType } = req.body;
+
+      const { error } = await supabaseAdmin.from("alerts").insert([
+        {
+          email,
+          keyword,
+          location,
+          job_function: jobFunction,
+          job_type: jobType,
+        },
+      ]);
+
+      if (error) {
+        console.error("Supabase error (create alert):", error);
+        return res.status(500).json({ error: "Failed to create alert" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Failed to create alert" });
+    }
+  });
+  
   app.get("/api/companies", async (req, res) => {
     try {
       const { data, error } = await supabase
