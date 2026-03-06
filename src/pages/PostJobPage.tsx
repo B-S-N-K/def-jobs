@@ -99,7 +99,7 @@ export function PostJobPage() {
                       <input
                         type="text"
                         className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl pl-10 pr-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                        placeholder="e.g. $80,000 - $100,000"
+                        placeholder="e.g. €80,000 - €100,000"
                         value={formData.salary}
                         onChange={e => setFormData({...formData, salary: e.target.value})}
                       />
@@ -169,30 +169,15 @@ export function PostJobPage() {
               />
             </div>
 
-            {/* Promotion Section (Monetization) */}
-            <div className="bg-shield-bg-light border-[1.5px] border-shield-navy-lt/30 rounded-xl p-6 relative overflow-hidden group">
+            {/* Promotion Section */}
+            <div className="bg-shield-bg-light border-[1.5px] border-shield-navy-lt/30 rounded-xl p-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-16 h-16 bg-shield-navy-lt/10 rounded-bl-full"></div>
-              <div className="flex items-start gap-4 relative z-10">
-                <div className="flex-shrink-0">
-                  <input
-                    type="checkbox"
-                    id="featured"
-                    className="h-5 w-5 rounded-md border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt mt-1 cursor-pointer"
-                    checked={formData.featured}
-                    onChange={e => setFormData({...formData, featured: e.target.checked})}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="featured" className="text-shield-text-l font-bold block font-heading flex items-center gap-2 cursor-pointer uppercase">
-                    {t('post_priority')}
-                    <span className="px-2 py-0.5 bg-shield-navy-lt/10 text-shield-navy-lt border border-shield-navy-lt/20 text-[10px] rounded-full tracking-wider">
-                      {t('post_recommended')}
-                    </span>
-                  </label>
-                  <p className="text-sm text-shield-text-lm mt-2">
-                    {t('post_priority_desc')}
-                  </p>
-                </div>
+              <div className="relative z-10">
+                <p className="text-shield-text-l font-bold font-heading uppercase text-sm mb-1">Want more visibility?</p>
+                <p className="text-sm text-shield-text-lm mb-3">Featured placement, email campaigns, social media promotion and more are available as part of our plans.</p>
+                <a href="/pricing" className="inline-flex items-center gap-1.5 text-shield-navy-lt text-sm font-semibold hover:underline">
+                  View our plans →
+                </a>
               </div>
             </div>
 

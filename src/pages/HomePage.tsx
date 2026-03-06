@@ -18,6 +18,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
   const [appliedJobType, setAppliedJobType] = useState('');
   const [appliedJobFunction, setAppliedJobFunction] = useState('');
   const { t } = useTranslation();
+  const [sortBy, setSortBy] = useState('newest');
   const [showAlertModal, setShowAlertModal] = useState(false);
   const [alertEmail, setAlertEmail] = useState('');
   const [alertSubmitting, setAlertSubmitting] = useState(false);
@@ -60,6 +61,12 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
     const matchesFunction = appliedJobFunction === '' || 
       job.tags.some(tag => tag.toLowerCase().includes(appliedJobFunction.toLowerCase()));
     return matchesKeyword && matchesLocation && matchesType && matchesFunction;
+  }).sort((a, b) => {
+    if (sortBy === 'salary') {
+      const getSalary = (s: string) => parseInt(s.replace(/[^0-9]/g, '')) || 0;
+      return getSalary(b.salary) - getSalary(a.salary);
+    }
+    return new Date(b.posted_at).getTime() - new Date(a.posted_at).getTime();
   });
 
   useEffect(() => {
@@ -142,7 +149,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
       {/* Featured Companies Section */}
       <div className="bg-white py-12 px-4 relative z-30">
         <p className="text-center text-sm text-shield-text-lm mb-6 tracking-wide">
-          {t('featured_label')} <a href="#" className="text-shield-text-l font-semibold underline underline-offset-4">{t('featured_link')}</a>{t('featured_label2')}
+          {t('featured_label')} <Link to="/companies" className="text-shield-text-l font-semibold underline underline-offset-4">{t('featured_link')}</Link>{t('featured_label2')}
         </p>
         <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
           {['Rheinmetall', 'Thales', 'Airbus'].map(company => (
@@ -264,9 +271,13 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
             <strong className="font-heading text-lg text-shield-navy-lt tracking-wide mr-1">{filteredJobs.length}</strong> 
             {t('open_positions')}
           </p>
-          <select className="bg-white border-[1.5px] border-shield-border-l rounded-lg px-3 py-1.5 text-sm text-shield-text-l outline-none cursor-pointer">
-            <option>{t('sort_newest')}</option>
-            <option>{t('sort_salary')}</option>
+          <select 
+            className="bg-white border-[1.5px] border-shield-border-l rounded-lg px-3 py-1.5 text-sm text-shield-text-l outline-none cursor-pointer"
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value)}
+          >
+            <option value="newest">{t('sort_newest')}</option>
+            <option value="salary">{t('sort_salary')}</option>
           </select>
         </div>
 
