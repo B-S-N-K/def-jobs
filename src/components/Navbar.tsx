@@ -40,7 +40,7 @@ export function Navbar() {
                 onClick={() => setLang('cs')}
                 className={cn("text-xs font-semibold w-8 py-1 rounded transition-colors text-center", lang === 'cs' ? "bg-shield-navy-lt text-white" : "text-shield-silver hover:text-shield-off-white")}
               >
-                CS
+                CZ
               </button>
               <span className="text-shield-gray-mid text-xs">|</span>
               <button 
@@ -50,13 +50,9 @@ export function Navbar() {
                 EN
               </button>
             </div>
-
-            <Link to="/login" className="text-shield-silver hover:text-shield-off-white hover:border-shield-navy-lt border border-shield-gray-mid px-4 py-1.5 rounded-lg text-sm font-medium transition-colors min-w-[80px] text-center flex-shrink-0">
-              {t('nav_login')}
-            </Link>
             <Link
               to="/post-job"
-              className="bg-shield-navy-lt hover:bg-shield-navy-mid text-white px-5 py-2 rounded-lg text-sm font-bold transition-all hover:-translate-y-[1px] tracking-wide min-w-[120px] text-center flex-shrink-0"
+              className="bg-shield-navy-lt hover:bg-shield-navy-mid text-white px-5 py-2 rounded-lg text-sm font-bold transition-all hover:-translate-y-[1px] tracking-wide"
             >
               {t('nav_hire')}
             </Link>
@@ -67,7 +63,7 @@ export function Navbar() {
                 onClick={() => setLang('cs')}
                 className={cn("text-[10px] font-semibold w-7 py-0.5 rounded text-center", lang === 'cs' ? "bg-shield-navy-lt text-white" : "text-shield-silver")}
               >
-                CS
+                CZ
               </button>
               <button 
                 onClick={() => setLang('en')}
