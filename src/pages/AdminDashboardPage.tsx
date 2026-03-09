@@ -249,7 +249,18 @@ export function AdminDashboardPage() {
                     <span className="text-xs text-shield-text-lm">{new Date(app.created_at).toLocaleDateString()}</span>
                   </div>
                   <p className="text-shield-text-lm text-sm mb-1">{app.email}</p>
-                  {app.cv_url && <a href={app.cv_url} target="_blank" rel="noopener noreferrer" className="text-shield-navy-lt text-sm hover:underline">View CV →</a>}
+                  {app.cv_url && (
+                    <button
+                      onClick={async () => {
+                        const res = await fetch(`/api/admin/cv-url/${app.cv_url}`);
+                        const { url } = await res.json();
+                        window.open(url, '_blank');
+                      }}
+                      className="text-shield-navy-lt text-sm hover:underline"
+                    >
+                      Download CV →
+                    </button>
+                  )}
                   {app.message && <p className="text-shield-text-lm text-sm mt-2 border-t border-shield-border-l pt-2">{app.message}</p>}
                 </div>
               ))}

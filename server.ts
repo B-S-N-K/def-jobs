@@ -309,6 +309,19 @@ async function startServer() {
   const storage_multer = multer.memoryStorage();
   const upload = multer({ storage: storage_multer });
 
+  app.get("/api/admin/cv-url/:fileName", async (req, res) => {
+    try {
+      const { fileName } = req.params;
+      const { data, error } = await supabaseAdmin.storage
+        .from('cvs')
+        .createSignedUrl(fileName, 3600);
+      if (error) return res.status(500).json({ error: 'Failed to generate URL' });
+      res.json({ url: data.signedUrl });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to generate URL' });
+    }
+  });
+  
   app.post("/api/upload-cv", upload.single('cv'), async (req, res) => {
     try {
       if (!req.file) return res.status(400).json({ error: 'No file provided' });
