@@ -85,9 +85,9 @@ export function JobDetailPage() {
                   </div>
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-shield-text-l mb-1">{job.title}</h1>
-                    <div className="text-lg text-shield-navy-lt font-medium">
+                    <Link to={`/companies`} className="text-lg text-shield-navy-lt font-medium hover:underline">
                       {job.company}
-                    </div>
+                  </Link>
                   </div>
                 </div>
 
