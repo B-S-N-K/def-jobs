@@ -305,6 +305,34 @@ async function startServer() {
     }
   });
 
+  const multer = (await import('multer')).default;
+  const storage_multer = multer.memoryStorage();
+  const upload = multer({ storage: storage_multer });
+
+  app.post("/api/upload-cv", upload.single('cv'), async (req, res) => {
+    try {
+      if (!req.file) return res.status(400).json({ error: 'No file provided' });
+
+      const fileName = `${Date.now()}-${req.file.originalname.replace(/\s+/g, '-')}`;
+      
+      const { error } = await supabaseAdmin.storage
+        .from('cvs')
+        .upload(fileName, req.file.buffer, {
+          contentType: 'application/pdf'
+        });
+
+      if (error) {
+        console.error('Storage error:', error);
+        return res.status(500).json({ error: 'Failed to upload CV' });
+      }
+
+      res.json({ fileName });
+    } catch (error) {
+      console.error('Upload error:', error);
+      res.status(500).json({ error: 'Failed to upload CV' });
+    }
+  });
+  
   app.post("/api/applications", async (req, res) => {
     try {
       const { jobId, name, email, message, cvUrl } = req.body;

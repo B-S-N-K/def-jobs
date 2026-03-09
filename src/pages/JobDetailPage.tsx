@@ -12,12 +12,13 @@ export function JobDetailPage() {
   const [applying, setApplying] = useState(false);
   const [applicationSent, setApplicationSent] = useState(false);
   const [consent, setConsent] = useState(false);
-  
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [cvUploading, setCvUploading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
-    cvUrl: ''
   });
 
   useEffect(() => {
@@ -36,19 +37,37 @@ export function JobDetailPage() {
 
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!consent) return;
+    if (!consent || !cvFile) return;
     setApplying(true);
-    
+
     try {
+      // Upload CV via server
+      setCvUploading(true);
+      const uploadData = new FormData();
+      uploadData.append('cv', cvFile);
+
+      const uploadRes = await fetch('/api/upload-cv', {
+        method: 'POST',
+        body: uploadData
+      });
+
+      if (!uploadRes.ok) throw new Error('CV upload failed');
+      const { fileName } = await uploadRes.json();
+      setCvUploading(false);
+
+      // Submit application
       const response = await fetch('/api/applications', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           jobId: id,
-          ...formData
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          cvUrl: fileName
         })
       });
-      
+
       if (response.ok) {
         setApplicationSent(true);
       } else {
@@ -56,9 +75,10 @@ export function JobDetailPage() {
       }
     } catch (error) {
       console.error('Error applying:', error);
-      alert('Error applying');
+      alert('Error uploading CV or sending application');
     } finally {
       setApplying(false);
+      setCvUploading(false);
     }
   };
 
@@ -177,17 +197,19 @@ export function JobDetailPage() {
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">{t('job_link')}</label>
-                    <div className="relative">
-                      <Upload className="absolute right-3 top-3 h-4 w-4 text-shield-text-lm opacity-60" />
+                    <label className="flex items-center justify-center gap-2 w-full bg-shield-bg-light border-[1.5px] border-dashed border-shield-border-l rounded-xl px-3 py-4 cursor-pointer hover:border-shield-navy-lt transition-colors">
+                      <Upload className="h-4 w-4 text-shield-text-lm" />
+                      <span className="text-sm text-shield-text-lm">
+                        {cvFile ? cvFile.name : 'Click to upload CV (PDF)'}
+                      </span>
                       <input
-                        type="url"
+                        type="file"
+                        accept="application/pdf"
                         required
-                        placeholder="https://"
-                        className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-3 py-2.5 pr-10 text-shield-text-l text-sm focus:border-shield-navy-lt outline-none transition-colors"
-                        value={formData.cvUrl}
-                        onChange={e => setFormData({...formData, cvUrl: e.target.value})}
+                        className="hidden"
+                        onChange={e => setCvFile(e.target.files?.[0] || null)}
                       />
-                    </div>
+                    </label>
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">{t('job_message')}</label>
@@ -212,10 +234,10 @@ export function JobDetailPage() {
                   </label>
                   <button
                     type="submit"
-                    disabled={applying || !consent}
+                    disabled={applying || !consent || !cvFile}
                     className="w-full bg-shield-black hover:bg-shield-navy-lt text-white font-heading font-bold text-base py-3.5 rounded-xl transition-all hover:-translate-y-[1px] disabled:opacity-50 uppercase tracking-widest"
                   >
-                    {applying ? 'TRANSMITTING...' : t('job_submit')}
+                    {cvUploading ? 'UPLOADING CV...' : applying ? 'TRANSMITTING...' : t('job_submit')}
                   </button>
                 </form>
               )}
