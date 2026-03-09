@@ -6,7 +6,7 @@ import { useTranslation } from '@/lib/i18n';
 
 export function JobDetailPage() {
   const { id } = useParams();
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
   const [applying, setApplying] = useState(false);
@@ -112,6 +112,12 @@ export function JobDetailPage() {
               </div>
 
               <div className="p-8">
+                {job.language && job.language !== lang && (
+                  <div className="flex items-center gap-2 text-xs text-shield-text-lm bg-shield-bg-light border border-shield-border-l rounded-lg px-3 py-2 mb-4">
+                    <span>🌐</span>
+                    <span>This listing is in the employer's original language.</span>
+                  </div>
+                )}
                 <h3 className="text-lg font-bold text-shield-text-l mb-4 font-heading uppercase tracking-wide">{t('job_briefing')}</h3>
                 <div className="prose max-w-none whitespace-pre-wrap text-shield-text-lm leading-relaxed text-sm">
                   {job.description}

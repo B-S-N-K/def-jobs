@@ -8,5 +8,8 @@ export interface Job {
   description?: string;
   tags: string[];
   postedAt: string;
+  posted_at: string;
   featured: boolean;
+  language?: string;
+  deleted_at?: string | null;
 }

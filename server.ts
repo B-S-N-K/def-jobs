@@ -60,7 +60,7 @@ async function startServer() {
 
   app.post("/api/jobs", async (req, res) => {
     try {
-      const { title, company, location, type, salary, description, tags, featured } = req.body;
+      const { title, company, location, type, salary, description, tags, featured, language } = req.body;
 
       const { data, error } = await supabaseAdmin
         .from("jobs")
@@ -73,7 +73,8 @@ async function startServer() {
             salary,
             description,
             tags: JSON.stringify(tags ?? []),
-            featured: featured ? 1 : 0,
+            featured: featured ? true : false,
+            language: language ?? 'en',
           },
         ])
         .select("id")

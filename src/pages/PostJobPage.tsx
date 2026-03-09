@@ -15,7 +15,8 @@ export function PostJobPage() {
     salary: '',
     description: '',
     tags: '',
-    featured: false
+    featured: false,
+    language: 'en'
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,7 +29,8 @@ export function PostJobPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean)
+          tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+          language: formData.language
         })
       });
 
@@ -117,6 +119,21 @@ export function PostJobPage() {
                     onChange={e => setFormData({...formData, tags: e.target.value})}
                   />
                 </div>
+                <div>
+                  <label className="block text-xs font-bold text-shield-text-lm mb-2 uppercase tracking-wider">Listing Language</label>
+                  <select
+                    className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm appearance-none cursor-pointer"
+                    value={formData.language}
+                    onChange={e => setFormData({...formData, language: e.target.value})}
+                  >
+                    <option value="en">English</option>
+                    <option value="cs">Czech</option>
+                    <option value="de">German</option>
+                    <option value="fr">French</option>
+                    <option value="it">Italian</option>
+                    <option value="sv">Swedish</option>
+                  </select>
+                  </div>
               </div>
             </div>
 
