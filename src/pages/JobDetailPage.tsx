@@ -11,6 +11,7 @@ export function JobDetailPage() {
   const [loading, setLoading] = useState(true);
   const [applying, setApplying] = useState(false);
   const [applicationSent, setApplicationSent] = useState(false);
+  const [consent, setConsent] = useState(false);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -35,6 +36,7 @@ export function JobDetailPage() {
 
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) return;
     setApplying(true);
     
     try {
@@ -87,7 +89,7 @@ export function JobDetailPage() {
                     <h1 className="text-2xl sm:text-3xl font-bold text-shield-text-l mb-1">{job.title}</h1>
                     <Link to={`/companies`} className="text-lg text-shield-navy-lt font-medium hover:underline">
                       {job.company}
-                  </Link>
+                    </Link>
                   </div>
                 </div>
 
@@ -196,9 +198,21 @@ export function JobDetailPage() {
                       onChange={e => setFormData({...formData, message: e.target.value})}
                     />
                   </div>
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={e => setConsent(e.target.checked)}
+                      className="mt-1 h-4 w-4 rounded border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt cursor-pointer"
+                    />
+                    <span className="text-xs text-shield-text-lm leading-relaxed">
+                      I agree that my data will be processed for this application and accept the{' '}
+                      <a href="/privacy" className="text-shield-navy-lt hover:underline">Privacy Policy</a>.
+                    </span>
+                  </label>
                   <button
                     type="submit"
-                    disabled={applying}
+                    disabled={applying || !consent}
                     className="w-full bg-shield-black hover:bg-shield-navy-lt text-white font-heading font-bold text-base py-3.5 rounded-xl transition-all hover:-translate-y-[1px] disabled:opacity-50 uppercase tracking-widest"
                   >
                     {applying ? 'TRANSMITTING...' : t('job_submit')}

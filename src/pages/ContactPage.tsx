@@ -5,11 +5,12 @@ export function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
-    if (!name || !email || !message) return;
+    if (!name || !email || !message || !consent) return;
     setSubmitting(true);
     try {
       await fetch('/api/contact', {
@@ -121,10 +122,22 @@ export function ContactPage() {
                       placeholder="How can we help you?"
                     />
                   </div>
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={e => setConsent(e.target.checked)}
+                      className="mt-1 h-4 w-4 rounded border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt cursor-pointer"
+                    />
+                    <span className="text-xs text-shield-text-lm leading-relaxed">
+                      I agree to be contacted and accept the{' '}
+                      <a href="/privacy" className="text-shield-navy-lt hover:underline">Privacy Policy</a>.
+                    </span>
+                  </label>
                   <button
                     onClick={handleSubmit}
-                    disabled={submitting}
-                    className="w-full bg-shield-black hover:bg-shield-navy-lt text-white font-bold py-3 rounded-xl transition-all hover:-translate-y-[1px]"
+                    disabled={submitting || !consent}
+                    className="w-full bg-shield-black hover:bg-shield-navy-lt text-white font-bold py-3 rounded-xl transition-all hover:-translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {submitting ? 'Sending...' : 'Send Message'}
                   </button>

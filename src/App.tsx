@@ -12,6 +12,7 @@ import { TermsPage } from '@/pages/TermsPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { AdminLoginPage } from '@/pages/AdminLoginPage';
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
+import { CookieBanner } from '@/components/CookieBanner';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
@@ -22,6 +23,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-shield-bg-light text-shield-text-l font-sans selection:bg-shield-navy-lt selection:text-white flex flex-col">
       <Navbar />
+      <CookieBanner />
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -23,9 +23,10 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
   const [alertEmail, setAlertEmail] = useState('');
   const [alertSubmitting, setAlertSubmitting] = useState(false);
   const [alertSuccess, setAlertSuccess] = useState(false);
+  const [alertConsent, setAlertConsent] = useState(false);
 
   const handleAlertSubmit = async () => {
-    if (!alertEmail) return;
+    if (!alertEmail || !alertConsent) return;
     setAlertSubmitting(true);
     try {
       await fetch('/api/alerts', {
@@ -44,6 +45,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
         setShowAlertModal(false);
         setAlertSuccess(false);
         setAlertEmail('');
+        setAlertConsent(false);
       }, 2000);
     } catch (err) {
       console.error('Failed to create alert', err);
@@ -350,6 +352,18 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
                   value={alertEmail}
                   onChange={e => setAlertEmail(e.target.value)}
                 />
+                <label className="flex items-start gap-2 mb-4 cursor-pointer">
+                <input
+                 type="checkbox"
+                 checked={alertConsent}
+                  onChange={e => setAlertConsent(e.target.checked)}
+                 className="mt-1 h-4 w-4 rounded border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt cursor-pointer"
+                />
+                  <span className="text-xs text-shield-text-lm leading-relaxed">
+                    I agree to receive job alert emails and accept the{' '}
+                    <a href="/privacy" className="text-shield-navy-lt hover:underline">Privacy Policy</a>.
+                  </span>
+                </label>
                 <button
                   onClick={handleAlertSubmit}
                   disabled={alertSubmitting}
