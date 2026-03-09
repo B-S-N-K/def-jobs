@@ -149,7 +149,7 @@ export function Radar() {
   return (
     <canvas 
       ref={canvasRef} 
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(900px,150vw)] h-[min(900px,150vw)] pointer-events-none z-0"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[45%] w-[min(1500px,190vw)] h-[min(1500px,190vw)] pointer-events-none z-0"
     />
   );
 }
