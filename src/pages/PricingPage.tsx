@@ -9,7 +9,8 @@ export function PricingPage() {
   const plans = [
     {
       name: 'Start',
-      price: '€189',
+      price: '€99',
+      originalPrice: '€189',
       period: t('pricing_per_listing'),
       description: t('pricing_start_desc'),
       color: 'border-shield-border-l',
@@ -24,7 +25,8 @@ export function PricingPage() {
     },
     {
       name: 'Featured',
-      price: '€299',
+      price: '€169',
+      originalPrice: '€299',
       period: t('pricing_per_listing'),
       description: t('pricing_featured_desc'),
       color: 'border-shield-navy-lt',
@@ -42,7 +44,8 @@ export function PricingPage() {
     },
     {
       name: 'Elite',
-      price: '€499',
+      price: '€279',
+      originalPrice: '€499',
       period: t('pricing_per_listing'),
       description: t('pricing_elite_desc'),
       color: 'border-shield-border-l',
@@ -60,7 +63,8 @@ export function PricingPage() {
     },
     {
       name: 'Bundle',
-      price: '€999',
+      price: '€599',
+      originalPrice: '€999',
       period: t('pricing_5_listings'),
       description: t('pricing_bundle_desc'),
       color: 'border-shield-border-l',
@@ -86,9 +90,13 @@ export function PricingPage() {
         <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-shield-off-white uppercase tracking-tight mb-4">
           {t('pricing_title')}
         </h1>
-        <p className="text-shield-silver text-base max-w-xl mx-auto">
+        <p className="text-shield-silver text-base max-w-xl mx-auto mb-4">
           {t('pricing_sub')}
         </p>
+        <div className="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+          🚀 Launch Offer — Limited Time
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-16">
@@ -105,6 +113,10 @@ export function PricingPage() {
                 <p className="text-shield-text-lm text-xs leading-relaxed">{plan.description}</p>
               </div>
               <div className="mb-6">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-shield-text-lm text-sm line-through opacity-60">{plan.originalPrice}</span>
+                  <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">Launch price</span>
+                </div>
                 <span className="font-heading font-extrabold text-4xl text-shield-text-l">{plan.price}</span>
                 <span className="text-shield-text-lm text-sm ml-2">{plan.period}</span>
               </div>
