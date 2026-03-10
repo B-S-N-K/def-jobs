@@ -144,7 +144,7 @@ async function startServer() {
     try {
       const { data, error } = await supabaseAdmin
         .from("applications")
-        .select("*")
+        .select("*, jobs(title, company)")
         .order("created_at", { ascending: false });
       if (error) return res.status(500).json({ error: "Failed to fetch applications" });
       res.json(data || []);

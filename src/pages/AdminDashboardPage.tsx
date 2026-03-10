@@ -248,6 +248,11 @@ export function AdminDashboardPage() {
                     <h3 className="font-bold text-shield-text-l">{app.name}</h3>
                     <span className="text-xs text-shield-text-lm">{new Date(app.created_at).toLocaleDateString()}</span>
                   </div>
+                  {app.jobs && (
+                    <p className="text-xs font-semibold text-shield-navy-lt mb-2 bg-shield-navy-lt/10 px-2 py-1 rounded-lg inline-block">
+                      {app.jobs.title} · {app.jobs.company}
+                    </p>
+                  )}
                   <p className="text-shield-text-lm text-sm mb-1">{app.email}</p>
                   {app.cv_url && (
                     <button
