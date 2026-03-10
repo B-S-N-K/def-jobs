@@ -5,6 +5,8 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getSupabaseClient, getSupabaseAdminClient } from "./src/lib/supabase";
+import { Resend } from 'resend';
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -364,6 +366,23 @@ async function startServer() {
         console.error("Supabase error (create application):", error);
         return res.status(500).json({ error: "Failed to submit application" });
       }
+
+      // Send email notification
+      await resend.emails.send({
+        from: 'Shield Talent <onboarding@resend.dev>',
+        to: 'bsnksaff1@gmail.com',
+        subject: `New Application: ${name}`,
+        html: `
+          <h2>New Job Application</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Job ID:</strong> ${jobId}</p>
+          ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+          <p><strong>CV:</strong> ${cvUrl}</p>
+          <br/>
+          <a href="https://def-jobs-production.up.railway.app/admin/dashboard">View in Admin Panel</a>
+        `
+      });
 
       res.json({ success: true });
     } catch (error) {
