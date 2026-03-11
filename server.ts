@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 import { getSupabaseClient, getSupabaseAdminClient } from "./src/lib/supabase";
 import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -46,11 +48,11 @@ async function startServer() {
             .toString()
             .padStart(2, "0")}.${date.getFullYear()}`;
 
-          return {
-            ...job,
-            tags: job.tags || [],
-            postedAt: euDate,
-          };
+            return {
+              ...job,
+              tags: typeof job.tags === 'string' ? JSON.parse(job.tags) : (job.tags || []),
+              postedAt: euDate,
+            };
         }) ?? [];
 
       res.json(jobsWithTags);
@@ -259,6 +261,25 @@ async function startServer() {
     } catch (error) {
       console.error("Database error:", error);
       res.status(500).json({ error: "Failed to send message" });
+    }
+  });
+  
+  app.post("/api/create-checkout", async (req, res) => {
+    try {
+      const { priceId, planName } = req.body;
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{ price: priceId, quantity: 1 }],
+        mode: 'payment',
+        success_url: `${req.headers.origin}/payment-success?plan=${planName}`,
+        cancel_url: `${req.headers.origin}/pricing`,
+      });
+
+      res.json({ url: session.url });
+    } catch (error) {
+      console.error('Stripe error:', error);
+      res.status(500).json({ error: 'Failed to create checkout session' });
     }
   });
   

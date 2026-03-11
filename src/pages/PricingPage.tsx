@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n';
 
 export function PricingPage() {
   const { t } = useTranslation();
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -15,6 +16,7 @@ export function PricingPage() {
       description: t('pricing_start_desc'),
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
+      priceId: 'price_1T9mst38H9O33X70Yz2XJWRP',
       features: [
         t('pricing_f1'),
         t('pricing_f2'),
@@ -32,6 +34,7 @@ export function PricingPage() {
       color: 'border-shield-navy-lt',
       buttonColor: 'bg-shield-navy-lt hover:bg-shield-navy-mid',
       badge: t('pricing_most_popular'),
+      priceId: 'price_1T9mtU38H9O33X70DjAPurHL',
       features: [
         t('pricing_f1'),
         t('pricing_f6'),
@@ -50,6 +53,7 @@ export function PricingPage() {
       description: t('pricing_elite_desc'),
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
+      priceId: 'price_1T9mtt38H9O33X70befGIiTG',
       features: [
         t('pricing_f11'),
         t('pricing_f6'),
@@ -70,6 +74,7 @@ export function PricingPage() {
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
       badge: t('pricing_best_value'),
+      priceId: 'price_1T9muY38H9O33X70zrQrBLJd',
       features: [
         t('pricing_f13'),
         t('pricing_f14'),
@@ -83,6 +88,24 @@ export function PricingPage() {
       ],
     },
   ];
+
+  const handleCheckout = async (priceId: string, planName: string) => {
+    setLoadingPlan(planName);
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId, planName }),
+      });
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Failed to start checkout. Please try again.');
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-shield-bg-light">
@@ -128,12 +151,13 @@ export function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <Link
-                to="/post-job"
-                className={`${plan.buttonColor} text-white text-sm font-bold py-3 rounded-xl text-center transition-all hover:-translate-y-[1px] block`}
+              <button
+                onClick={() => handleCheckout(plan.priceId, plan.name)}
+                disabled={loadingPlan === plan.name}
+                className={`${plan.buttonColor} text-white text-sm font-bold py-3 rounded-xl text-center transition-all hover:-translate-y-[1px] block w-full disabled:opacity-50`}
               >
-                {t('pricing_get_started')}
-              </Link>
+                {loadingPlan === plan.name ? 'Loading...' : t('pricing_get_started')}
+              </button>
             </div>
           ))}
         </div>

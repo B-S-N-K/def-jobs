@@ -12,6 +12,7 @@ import { TermsPage } from '@/pages/TermsPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { AdminLoginPage } from '@/pages/AdminLoginPage';
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
+import { PaymentSuccessPage } from '@/pages/PaymentSuccessPage';
 import { CookieBanner } from '@/components/CookieBanner';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Shield } from 'lucide-react';
@@ -38,6 +39,7 @@ function AppContent() {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/payment-success" element={<PaymentSuccessPage />} />
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           {/* Add more routes as we build them */}
