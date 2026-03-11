@@ -16,8 +16,92 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+    const sig = req.headers['stripe-signature'] as string;
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
+      return res.status(400).send(`Webhook Error: ${err}`);
+    }
+
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object as any;
+      console.log('Payment completed:', session.id);
+
+      // Send confirmation email to customer
+      if (session.customer_details?.email) {
+        await resend.emails.send({
+          from: 'Shield Talent <onboarding@resend.dev>',
+          to: session.customer_details.email,
+          subject: 'Your Shield Talent order is confirmed!',
+          html: `
+            <h2>Payment Confirmed ✅</h2>
+            <p>Thank you for your purchase on Shield Talent.</p>
+            <p>You can now post your job listing at <a href="https://def-jobs-production.up.railway.app/post-job">this link</a>.</p>
+            <p>If you need any help, reply to this email.</p>
+            <br/>
+            <p>The Shield Talent Team</p>
+          `
+        });
+      }
+
+      // Notify you
+      await resend.emails.send({
+        from: 'Shield Talent <onboarding@resend.dev>',
+        to: 'bsnksaff1@gmail.com',
+        subject: `New payment received!`,
+        html: `
+          <h2>New Payment 💰</h2>
+          <p><strong>Amount:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
+          <p><strong>Customer:</strong> ${session.customer_details?.email}</p>
+          <p><strong>Plan:</strong> ${session.metadata?.planName || 'Unknown'}</p>
+        `
+      });
+    }
+
+    res.json({ received: true });
+  });
   // Middleware to parse JSON bodies
   app.use(express.json());
+  app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+    const sig = req.headers['stripe-signature']!;
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
+      return res.status(400).send('Webhook Error');
+    }
+
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object as any;
+      console.log('Payment successful:', session.id);
+
+      // Send confirmation email to customer
+      if (session.customer_details?.email) {
+        await resend.emails.send({
+          from: 'Shield Talent <onboarding@resend.dev>',
+          to: session.customer_details.email,
+          subject: 'Payment Confirmed — Post Your Job on Shield Talent',
+          html: `
+            <h2>Payment Confirmed!</h2>
+            <p>Thank you for your purchase. You can now post your job listing on Shield Talent.</p>
+            <p><strong>Amount paid:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
+            <br/>
+            <a href="https://def-jobs-production.up.railway.app/post-job" style="background:#1d4ed8;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Post Your Job Now</a>
+            <br/><br/>
+            <p>If you have any questions, reply to this email or contact us at hello@shieldtalent.com</p>
+          `
+        });
+      }
+    }
+
+    res.json({ received: true });
+  });
 
   const supabase = getSupabaseClient();
   const supabaseAdmin = getSupabaseAdminClient();
@@ -274,6 +358,7 @@ async function startServer() {
         mode: 'payment',
         success_url: `${req.headers.origin}/payment-success?plan=${planName}`,
         cancel_url: `${req.headers.origin}/pricing`,
+        metadata: { planName },
       });
 
       res.json({ url: session.url });
@@ -282,7 +367,7 @@ async function startServer() {
       res.status(500).json({ error: 'Failed to create checkout session' });
     }
   });
-  
+
   app.post("/api/alerts", async (req, res) => {
     try {
       const { email, keyword, location, jobFunction, jobType } = req.body;
