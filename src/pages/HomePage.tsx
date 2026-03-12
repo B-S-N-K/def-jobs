@@ -161,7 +161,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
               </div>
               <div>
                 <span className="block font-semibold text-sm text-shield-text-l">{company}</span>
-                <span className="block text-xs text-shield-text-lm">{t('view')} jobs</span>
+                <span className="block text-xs text-shield-text-lm">{t('home_view_jobs')}</span>
               </div>
             </div>
           ))}
@@ -190,12 +190,14 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
               <MapPin className="h-4 w-4 text-shield-text-lm opacity-60" />
               <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={location} onChange={e => setLocation(e.target.value)}>
                 <option value="">{t('search_location')}</option>
-                <option value="DE">Germany</option>
-                <option value="FR">France</option>
-                <option value="UK">United Kingdom</option>
-                <option value="CZ">Czech Republic</option>
-                <option value="PL">Poland</option>
-                <option value="Remote">Remote</option>
+                <option value="DE">{t('loc_germany')}</option>
+                <option value="FR">{t('loc_france')}</option>
+                <option value="UK">{t('loc_uk')}</option>
+                <option value="CZ">{t('loc_czech')}</option>
+                <option value="PL">{t('loc_poland')}</option>
+                <option value="SE">{t('loc_sweden')}</option>
+                <option value="IT">{t('loc_italy')}</option>
+                <option value="Remote">{t('loc_remote')}</option>
               </select>
             </div>
           </div>
@@ -204,23 +206,23 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
               <Briefcase className="h-4 w-4 text-shield-text-lm opacity-60" />
               <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={jobFunction} onChange={e => setJobFunction(e.target.value)}>
                 <option value="">{t('search_function')}</option>
-                <option value="Engineering">Engineering</option>
-                <option value="IT">IT & Cyber</option>
-                <option value="Logistics">Logistics</option>
-                <option value="Manufacturing">Manufacturing</option>
-                <option value="Management">Management</option>
-                <option value="Finance">Finance</option>
-                <option value="Admin">Admin</option>
+                <option value="Engineering">{t('cat_engineering')}</option>
+                <option value="IT">{t('cat_it')}</option>
+                <option value="Logistics">{t('cat_logistics')}</option>
+                <option value="Manufacturing">{t('cat_trades')}</option>
+                <option value="Management">{t('cat_management')}</option>
+                <option value="Finance">{t('cat_finance')}</option>
+                <option value="Admin">{t('cat_admin')}</option>
               </select>
             </div>
             <div className="flex items-center gap-2 bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-2.5 focus-within:border-shield-navy-lt transition-colors">
               <Building2 className="h-4 w-4 text-shield-text-lm opacity-60" />
               <select className="bg-transparent border-none outline-none w-full text-sm text-shield-text-l appearance-none cursor-pointer" value={jobType} onChange={e => setJobType(e.target.value)}>
                 <option value="">{t('search_type')}</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Contract">Contract</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Temporary">Temporary</option>
+                <option value="Full-time">{t('type_fulltime')}</option>
+                <option value="Contract">{t('type_contract')}</option>
+                <option value="Part-time">{t('type_parttime')}</option>
+                <option value="Temporary">{t('type_temporary')}</option>
               </select>
             </div>
           </div>
@@ -285,7 +287,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
 
         {/* Hire Banner */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white border-[1.5px] border-shield-border-l border-l-4 border-l-shield-navy-lt rounded-xl p-4 mb-6 gap-4">
-          <p className="text-sm text-shield-text-lm" dangerouslySetInnerHTML={{ __html: '🛡️ ' + t('banner_text') }} />
+          <p className="text-sm text-shield-text-lm">{t('banner_text')}</p>
           <Link to="/post-job" className="bg-shield-black hover:bg-shield-navy-lt text-white text-sm font-semibold px-5 py-2 rounded-lg whitespace-nowrap transition-colors">
             {t('banner_btn')}
           </Link>
@@ -293,7 +295,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
 
         <div className="space-y-3">
           {loading ? (
-            <div className="text-center py-20 text-shield-text-lm">Loading positions...</div>
+            <div className="text-center py-20 text-shield-text-lm">{t('home_loading')}</div>
           ) : filteredJobs.map((job, index) => (
             <React.Fragment key={job.id}>
               <JobCard job={job} />
@@ -342,12 +344,12 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
             </div>
             <p className="text-shield-text-lm text-sm mb-6">{t('alert_sub')}</p>
             {alertSuccess ? (
-              <div className="text-center py-4 text-green-600 font-semibold">✅ Alert created successfully!</div>
+              <div className="text-center py-4 text-green-600 font-semibold">{t('alert_success')}</div>
             ) : (
               <>
                 <input
                   type="email"
-                  placeholder="Your email address"
+                  placeholder={t('alert_email_placeholder')}
                   className="w-full border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-sm outline-none focus:border-shield-navy-lt mb-4"
                   value={alertEmail}
                   onChange={e => setAlertEmail(e.target.value)}
@@ -360,8 +362,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
                  className="mt-1 h-4 w-4 rounded border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt cursor-pointer"
                 />
                   <span className="text-xs text-shield-text-lm leading-relaxed">
-                    I agree to receive job alert emails and accept the{' '}
-                    <a href="/privacy" className="text-shield-navy-lt hover:underline">Privacy Policy</a>.
+                    {t('alert_consent')}
                   </span>
                 </label>
                 <button

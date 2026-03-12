@@ -118,7 +118,7 @@ export function PricingPage() {
         </p>
         <div className="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest">
           <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
-          🚀 Launch Offer — Limited Time
+          🚀 Launch Offer - Limited Time
         </div>
       </div>
 

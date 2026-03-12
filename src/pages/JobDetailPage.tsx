@@ -71,26 +71,26 @@ export function JobDetailPage() {
       if (response.ok) {
         setApplicationSent(true);
       } else {
-        alert('Failed to send application');
+        alert(t('job_apply_error'));
       }
     } catch (error) {
       console.error('Error applying:', error);
-      alert('Error uploading CV or sending application');
+      alert(t('job_apply_error'));
     } finally {
       setApplying(false);
       setCvUploading(false);
     }
   };
 
-  if (loading) return <div className="min-h-screen bg-shield-bg-light flex items-center justify-center text-shield-text-lm">Loading...</div>;
-  if (!job) return <div className="min-h-screen bg-shield-bg-light flex items-center justify-center text-shield-text-lm">Job not found</div>;
+  if (loading) return <div className="min-h-screen bg-shield-bg-light flex items-center justify-center text-shield-text-lm">{t('job_loading')}</div>;
+  if (!job) return <div className="min-h-screen bg-shield-bg-light flex items-center justify-center text-shield-text-lm">{t('job_not_found')}</div>;
 
   return (
     <div className="min-h-screen bg-shield-bg-light py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <Link to="/" className="inline-flex items-center text-shield-text-lm hover:text-shield-text-l mb-8 transition-colors text-sm font-medium">
           <ChevronLeft className="h-4 w-4 mr-1" />
-          Back to jobs
+          {t('job_back')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -137,7 +137,7 @@ export function JobDetailPage() {
                 {job.language && job.language !== lang && (
                   <div className="flex items-center gap-2 text-xs text-shield-text-lm bg-shield-bg-light border border-shield-border-l rounded-lg px-3 py-2 mb-4">
                     <span>🌐</span>
-                    <span>This listing is in the employer's original language.</span>
+                    <span>{t('job_lang_notice')}</span>
                   </div>
                 )}
                 <h3 className="text-lg font-bold text-shield-text-l mb-4 font-heading uppercase tracking-wide">{t('job_briefing')}</h3>
@@ -170,7 +170,7 @@ export function JobDetailPage() {
               {applicationSent ? (
                 <div className="text-center py-8 bg-shield-bg-light rounded-xl border border-shield-border-l">
                   <CheckCircle className="h-12 w-12 text-shield-navy-lt mx-auto mb-4" />
-                  <h4 className="text-lg font-bold text-shield-text-l mb-2">Application Sent</h4>
+                  <h4 className="text-lg font-bold text-shield-text-l mb-2">{t('job_sent_title')}</h4>
                   <p className="text-shield-text-lm text-sm">{t('job_success')}</p>
                 </div>
               ) : (
@@ -196,11 +196,11 @@ export function JobDetailPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">{t('job_link')}</label>
+                    <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">{t('job_cv_label')}</label>
                     <label className="flex items-center justify-center gap-2 w-full bg-shield-bg-light border-[1.5px] border-dashed border-shield-border-l rounded-xl px-3 py-4 cursor-pointer hover:border-shield-navy-lt transition-colors">
                       <Upload className="h-4 w-4 text-shield-text-lm" />
                       <span className="text-sm text-shield-text-lm">
-                        {cvFile ? cvFile.name : 'Click to upload CV (PDF)'}
+                        {cvFile ? cvFile.name : t('job_cv_placeholder')}
                       </span>
                       <input
                         type="file"
@@ -228,8 +228,7 @@ export function JobDetailPage() {
                       className="mt-1 h-4 w-4 rounded border-shield-border-l text-shield-navy-lt focus:ring-shield-navy-lt cursor-pointer"
                     />
                     <span className="text-xs text-shield-text-lm leading-relaxed">
-                      I agree that my data will be processed for this application and accept the{' '}
-                      <a href="/privacy" className="text-shield-navy-lt hover:underline">Privacy Policy</a>.
+                      {t('job_consent')}
                     </span>
                   </label>
                   <button
@@ -237,7 +236,7 @@ export function JobDetailPage() {
                     disabled={applying || !consent || !cvFile}
                     className="w-full bg-shield-black hover:bg-shield-navy-lt text-white font-heading font-bold text-base py-3.5 rounded-xl transition-all hover:-translate-y-[1px] disabled:opacity-50 uppercase tracking-widest"
                   >
-                    {cvUploading ? 'UPLOADING CV...' : applying ? 'TRANSMITTING...' : t('job_submit')}
+                    {cvUploading ? t('job_uploading') : applying ? t('job_submitting') : t('job_submit')}
                   </button>
                 </form>
               )}

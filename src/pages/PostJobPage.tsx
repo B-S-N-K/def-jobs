@@ -37,11 +37,11 @@ export function PostJobPage() {
       if (response.ok) {
         navigate('/');
       } else {
-        alert('Failed to post job');
+        alert(t('post_error'));
       }
     } catch (error) {
       console.error('Error posting job:', error);
-      alert('Error posting job');
+      alert(t('post_error'));
     } finally {
       setLoading(false);
     }
@@ -74,7 +74,7 @@ export function PostJobPage() {
                     type="text"
                     required
                     className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                    placeholder="e.g. SENIOR AEROSPACE WELDER"
+                    placeholder={t('post_title_placeholder')}
                     value={formData.title}
                     onChange={e => setFormData({...formData, title: e.target.value})}
                   />
@@ -101,7 +101,7 @@ export function PostJobPage() {
                       <input
                         type="text"
                         className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl pl-10 pr-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                        placeholder="e.g. €80,000 - €100,000"
+                        placeholder={t('post_salary_placeholder')}
                         value={formData.salary}
                         onChange={e => setFormData({...formData, salary: e.target.value})}
                       />
@@ -114,24 +114,24 @@ export function PostJobPage() {
                   <input
                     type="text"
                     className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                    placeholder="e.g. MANUFACTURING, SECURITY CLEARANCE, IT"
+                    placeholder={t('post_tags_placeholder')}
                     value={formData.tags}
                     onChange={e => setFormData({...formData, tags: e.target.value})}
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-shield-text-lm mb-2 uppercase tracking-wider">Listing Language</label>
+                  <label className="block text-xs font-bold text-shield-text-lm mb-2 uppercase tracking-wider">{t('post_language')}</label>
                   <select
                     className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm appearance-none cursor-pointer"
                     value={formData.language}
                     onChange={e => setFormData({...formData, language: e.target.value})}
                   >
                     <option value="en">English</option>
-                    <option value="cs">Czech</option>
-                    <option value="de">German</option>
-                    <option value="fr">French</option>
-                    <option value="it">Italian</option>
-                    <option value="sv">Swedish</option>
+                    <option value="cs">Čeština</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="sv">Svenska</option>
                   </select>
                   </div>
               </div>
@@ -149,7 +149,7 @@ export function PostJobPage() {
                     type="text"
                     required
                     className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                    placeholder="e.g. AEROSTRUCT DEFENSE"
+                    placeholder={t('post_company_placeholder')}
                     value={formData.company}
                     onChange={e => setFormData({...formData, company: e.target.value})}
                   />
@@ -162,7 +162,7 @@ export function PostJobPage() {
                       type="text"
                       required
                       className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl pl-10 pr-4 py-3 text-shield-text-l focus:border-shield-navy-lt outline-none transition-colors text-sm"
-                      placeholder="e.g. HUNTSVILLE, AL"
+                      placeholder={t('post_location_placeholder')}
                       value={formData.location}
                       onChange={e => setFormData({...formData, location: e.target.value})}
                     />
@@ -190,10 +190,10 @@ export function PostJobPage() {
             <div className="bg-shield-bg-light border-[1.5px] border-shield-navy-lt/30 rounded-xl p-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-16 h-16 bg-shield-navy-lt/10 rounded-bl-full"></div>
               <div className="relative z-10">
-                <p className="text-shield-text-l font-bold font-heading uppercase text-sm mb-1">Want more visibility?</p>
-                <p className="text-sm text-shield-text-lm mb-3">Featured placement, email campaigns, social media promotion and more are available as part of our plans.</p>
+                <p className="text-shield-text-l font-bold font-heading uppercase text-sm mb-1">{t('post_promo_title')}</p>
+                <p className="text-sm text-shield-text-lm mb-3">{t('post_promo_desc')}</p>
                 <a href="/pricing" className="inline-flex items-center gap-1.5 text-shield-navy-lt text-sm font-semibold hover:underline">
-                  View our plans →
+                  {t('post_promo_link')}
                 </a>
               </div>
             </div>
