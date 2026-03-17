@@ -33,7 +33,7 @@ async function startServer() {
 
       if (session.customer_details?.email) {
         await resend.emails.send({
-          from: 'DefJobs <onboarding@resend.dev>',
+          from: 'DefJobs <noreply@contact.defjobs.eu>',
           to: session.customer_details.email,
           subject: 'Your DefJobs order is confirmed!',
           html: `
@@ -48,7 +48,7 @@ async function startServer() {
       }
 
       await resend.emails.send({
-        from: 'DefJobs <onboarding@resend.dev>',
+        from: 'DefJobs <noreply@contact.defjobs.eu>',
         to: 'hello@defjobs.eu',
         subject: `New payment received!`,
         html: `
@@ -163,7 +163,7 @@ async function startServer() {
       }
 
       const job: any = { ...data };
-      job.tags = job.tags || [];
+      job.tags = typeof job.tags === 'string' ? JSON.parse(job.tags) : (job.tags || []);
 
       const date = job.posted_at ? new Date(job.posted_at) : new Date();
       job.postedAt = `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
@@ -436,8 +436,9 @@ async function startServer() {
         return res.status(500).json({ error: "Failed to submit application" });
       }
 
+      console.log('Sending notification email to hello@defjobs.eu');
       // Send email notification
-      await resend.emails.send({
+      const emailResult = await resend.emails.send({
         from: 'DefJobs <onboarding@resend.dev>',
         to: 'hello@defjobs.eu',
         subject: `New Application: ${name}`,
@@ -452,6 +453,7 @@ async function startServer() {
           <a href="https://defjobs.eu/admin/dashboard">View in Admin Panel</a>
         `
       });
+      console.log('Email result:', JSON.stringify(emailResult));
 
       res.json({ success: true });
     } catch (error) {
