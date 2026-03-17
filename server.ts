@@ -31,7 +31,6 @@ async function startServer() {
       const session = event.data.object as any;
       console.log('Payment completed:', session.id);
 
-      // Send confirmation email to customer
       if (session.customer_details?.email) {
         await resend.emails.send({
           from: 'DefJobs <onboarding@resend.dev>',
@@ -48,7 +47,6 @@ async function startServer() {
         });
       }
 
-      // Notify you
       await resend.emails.send({
         from: 'DefJobs <onboarding@resend.dev>',
         to: 'bsnksaff1@gmail.com',
@@ -64,44 +62,9 @@ async function startServer() {
 
     res.json({ received: true });
   });
+
   // Middleware to parse JSON bodies
   app.use(express.json());
-  app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
-    const sig = req.headers['stripe-signature']!;
-    let event;
-
-    try {
-      event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
-    } catch (err) {
-      console.error('Webhook signature verification failed:', err);
-      return res.status(400).send('Webhook Error');
-    }
-
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object as any;
-      console.log('Payment successful:', session.id);
-
-      // Send confirmation email to customer
-      if (session.customer_details?.email) {
-        await resend.emails.send({
-          from: 'DefJobs <onboarding@resend.dev>',
-          to: session.customer_details.email,
-          subject: 'Payment Confirmed — Post Your Job on DefJobs',
-          html: `
-            <h2>Payment Confirmed!</h2>
-            <p>Thank you for your purchase. You can now post your job listing on DefJobs.</p>
-            <p><strong>Amount paid:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
-            <br/>
-            <a href="https://def-jobs-production.up.railway.app/post-job" style="background:#1d4ed8;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Post Your Job Now</a>
-            <br/><br/>
-            <p>If you have any questions, reply to this email or contact us at hello@shieldtalent.com</p>
-          `
-        });
-      }
-    }
-
-    res.json({ received: true });
-  });
 
   const supabase = getSupabaseClient();
   const supabaseAdmin = getSupabaseAdminClient();
