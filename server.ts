@@ -39,7 +39,7 @@ async function startServer() {
           html: `
             <h2>Payment Confirmed ✅</h2>
             <p>Thank you for your purchase on DefJobs.</p>
-            <p>You can now post your job listing at <a href="https://def-jobs-production.up.railway.app/post-job">this link</a>.</p>
+            <p>You can now post your job listing at <a href="https://defjobs.eu/post-job">this link</a>.</p>
             <p>If you need any help, reply to this email.</p>
             <br/>
             <p>The DefJobs Team</p>
@@ -449,7 +449,7 @@ async function startServer() {
           ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
           <p><strong>CV:</strong> ${cvUrl}</p>
           <br/>
-          <a href="https://def-jobs-production.up.railway.app/admin/dashboard">View in Admin Panel</a>
+          <a href="https://defjobs.eu/admin/dashboard">View in Admin Panel</a>
         `
       });
 
