@@ -49,7 +49,7 @@ async function startServer() {
 
       await resend.emails.send({
         from: 'DefJobs <onboarding@resend.dev>',
-        to: 'bsnksaff1@gmail.com',
+        to: 'hello@defjobs.eu',
         subject: `New payment received!`,
         html: `
           <h2>New Payment 💰</h2>
@@ -439,7 +439,7 @@ async function startServer() {
       // Send email notification
       await resend.emails.send({
         from: 'DefJobs <onboarding@resend.dev>',
-        to: 'bsnksaff1@gmail.com',
+        to: 'hello@defjobs.eu',
         subject: `New Application: ${name}`,
         html: `
           <h2>New Job Application</h2>
