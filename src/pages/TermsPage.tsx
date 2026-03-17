@@ -75,7 +75,7 @@ export function TermsPage() {
             <p className="text-shield-text-lm leading-relaxed">
               For any questions about these Terms, please contact us at{' '}
               <a href="mailto:hello@defjobs.eu" className="text-shield-navy-lt hover:underline">
-                hello@shieldtalent.com
+                hello@defjobs.eu
               </a>
             </p>
           </section>

@@ -65,7 +65,7 @@ export function AdminLoginPage() {
                 className="w-full bg-shield-black border border-shield-gray-line rounded-xl px-4 py-3 text-sm text-shield-off-white outline-none focus:border-shield-navy-lt transition-colors"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="admin@shieldtalent.com"
+                placeholder="admin@defjobs.eu"
                 onKeyDown={e => e.key === 'Enter' && handleLogin()}
               />
             </div>

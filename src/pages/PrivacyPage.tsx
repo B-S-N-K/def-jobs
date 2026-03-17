@@ -19,7 +19,7 @@ export function PrivacyPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">1. Introduction</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              DefJobs ("we", "us", "our") is committed to protecting your personal data. This Privacy Policy explains how we collect, use and protect information you provide when using our platform at shieldtalent.com.
+              DefJobs ("we", "us", "our") is committed to protecting your personal data. This Privacy Policy explains how we collect, use and protect information you provide when using our platform at defjobs.eu.
             </p>
           </section>
 
@@ -77,7 +77,7 @@ export function PrivacyPage() {
             <p className="text-shield-text-lm leading-relaxed">
               For any privacy-related questions or data requests, please contact us at{' '}
               <a href="mailto:hello@defjobs.eu" className="text-shield-navy-lt hover:underline">
-                hello@shieldtalent.com
+                hello@defjobs.eu
               </a>
             </p>
           </section>
