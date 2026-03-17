@@ -50,8 +50,8 @@ export function ContactPage() {
                 <h3 className="font-bold text-shield-text-l">Email Us</h3>
               </div>
               <p className="text-shield-text-lm text-sm mb-2">For general enquiries:</p>
-              <a href="mailto:hello@shieldtalent.com" className="text-shield-navy-lt font-semibold hover:underline">
-                hello@shieldtalent.com
+              <a href="mailto:hello@defjobs.eu" className="text-shield-navy-lt font-semibold hover:underline">
+                hello@defjobs.eu
               </a>
             </div>
 

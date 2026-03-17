@@ -74,7 +74,7 @@ export function TermsPage() {
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">8. Contact</h2>
             <p className="text-shield-text-lm leading-relaxed">
               For any questions about these Terms, please contact us at{' '}
-              <a href="mailto:hello@shieldtalent.com" className="text-shield-navy-lt hover:underline">
+              <a href="mailto:hello@defjobs.eu" className="text-shield-navy-lt hover:underline">
                 hello@shieldtalent.com
               </a>
             </p>

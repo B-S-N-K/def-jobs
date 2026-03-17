@@ -184,7 +184,7 @@ export function PricingPage() {
             {t('pricing_tailored_2')}
           </p>
           <a
-            href="mailto:hello@shieldtalent.com"
+            href="mailto:hello@defjobs.eu"
             className="inline-flex items-center gap-2 bg-shield-navy-lt hover:bg-shield-navy-mid text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-[1px] text-base"
           >
             {t('pricing_lets_talk')}
