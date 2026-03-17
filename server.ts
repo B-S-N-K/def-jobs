@@ -34,23 +34,23 @@ async function startServer() {
       // Send confirmation email to customer
       if (session.customer_details?.email) {
         await resend.emails.send({
-          from: 'Shield Talent <onboarding@resend.dev>',
+          from: 'DefJobs <onboarding@resend.dev>',
           to: session.customer_details.email,
-          subject: 'Your Shield Talent order is confirmed!',
+          subject: 'Your DefJobs order is confirmed!',
           html: `
             <h2>Payment Confirmed ✅</h2>
-            <p>Thank you for your purchase on Shield Talent.</p>
+            <p>Thank you for your purchase on DefJobs.</p>
             <p>You can now post your job listing at <a href="https://def-jobs-production.up.railway.app/post-job">this link</a>.</p>
             <p>If you need any help, reply to this email.</p>
             <br/>
-            <p>The Shield Talent Team</p>
+            <p>The DefJobs Team</p>
           `
         });
       }
 
       // Notify you
       await resend.emails.send({
-        from: 'Shield Talent <onboarding@resend.dev>',
+        from: 'DefJobs <onboarding@resend.dev>',
         to: 'bsnksaff1@gmail.com',
         subject: `New payment received!`,
         html: `
@@ -84,12 +84,12 @@ async function startServer() {
       // Send confirmation email to customer
       if (session.customer_details?.email) {
         await resend.emails.send({
-          from: 'Shield Talent <onboarding@resend.dev>',
+          from: 'DefJobs <onboarding@resend.dev>',
           to: session.customer_details.email,
-          subject: 'Payment Confirmed — Post Your Job on Shield Talent',
+          subject: 'Payment Confirmed — Post Your Job on DefJobs',
           html: `
             <h2>Payment Confirmed!</h2>
-            <p>Thank you for your purchase. You can now post your job listing on Shield Talent.</p>
+            <p>Thank you for your purchase. You can now post your job listing on DefJobs.</p>
             <p><strong>Amount paid:</strong> €${(session.amount_total / 100).toFixed(2)}</p>
             <br/>
             <a href="https://def-jobs-production.up.railway.app/post-job" style="background:#1d4ed8;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Post Your Job Now</a>
@@ -475,7 +475,7 @@ async function startServer() {
 
       // Send email notification
       await resend.emails.send({
-        from: 'Shield Talent <onboarding@resend.dev>',
+        from: 'DefJobs <onboarding@resend.dev>',
         to: 'bsnksaff1@gmail.com',
         subject: `New Application: ${name}`,
         html: `

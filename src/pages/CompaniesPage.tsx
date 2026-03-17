@@ -38,7 +38,7 @@ export function CompaniesPage() {
           Defense Companies
         </h1>
         <p className="text-shield-silver text-base max-w-xl mx-auto">
-          Browse the leading defense, aerospace and security companies hiring on Shield Talent.
+          Browse the leading defense, aerospace and security companies hiring on DefJobs.
         </p>
       </div>
 

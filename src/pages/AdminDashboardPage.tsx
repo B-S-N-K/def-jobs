@@ -114,7 +114,7 @@ export function AdminDashboardPage() {
           <div className="h-8 w-8 bg-shield-navy-lt rounded-md flex items-center justify-center">
             <Shield className="h-4 w-4 text-white" />
           </div>
-          <span className="font-heading font-bold text-shield-off-white tracking-widest uppercase">Shield Talent Admin</span>
+          <span className="font-heading font-bold text-shield-off-white tracking-widest uppercase">DefJobs Admin</span>
         </div>
         <button onClick={handleLogout} className="flex items-center gap-2 text-shield-silver hover:text-white text-sm transition-colors">
           <LogOut className="h-4 w-4" />

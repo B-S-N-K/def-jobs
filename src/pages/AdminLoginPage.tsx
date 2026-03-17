@@ -38,7 +38,7 @@ export function AdminLoginPage() {
             </div>
           </div>
           <h1 className="font-heading font-bold text-2xl text-shield-off-white uppercase tracking-widest">
-            Shield Talent
+            DefJobs
           </h1>
           <p className="text-shield-silver text-sm mt-1">Admin Access</p>
         </div>

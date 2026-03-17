@@ -18,7 +18,7 @@ export function Navbar() {
                 <Shield className="h-4 w-4 text-white" />
               </div>
               <span className="font-heading font-bold text-xl text-shield-off-white tracking-[0.12em] uppercase">
-                Shield Talent
+                DefJobs
               </span>
             </Link>
             <div className="hidden md:ml-10 md:flex md:space-x-2">

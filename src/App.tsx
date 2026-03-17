@@ -55,7 +55,7 @@ function AppContent() {
                   <Shield className="h-4 w-4 text-white" />
                 </div>
                 <span className="font-heading font-bold text-lg text-shield-off-white tracking-[0.12em] uppercase">
-                  Shield Talent
+                  DefJobs
                 </span>
               </div>
               <p className="text-shield-silver text-sm leading-relaxed max-w-[220px]">

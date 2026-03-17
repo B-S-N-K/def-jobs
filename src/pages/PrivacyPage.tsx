@@ -19,7 +19,7 @@ export function PrivacyPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">1. Introduction</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              Shield Talent ("we", "us", "our") is committed to protecting your personal data. This Privacy Policy explains how we collect, use and protect information you provide when using our platform at shieldtalent.com.
+              DefJobs ("we", "us", "our") is committed to protecting your personal data. This Privacy Policy explains how we collect, use and protect information you provide when using our platform at shieldtalent.com.
             </p>
           </section>
 
