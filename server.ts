@@ -436,10 +436,9 @@ async function startServer() {
         return res.status(500).json({ error: "Failed to submit application" });
       }
 
-      console.log('Sending notification email to hello@defjobs.eu');
       // Send email notification
-      const emailResult = await resend.emails.send({
-        from: 'DefJobs <onboarding@resend.dev>',
+      await resend.emails.send({
+        from: 'DefJobs <noreply@contact.defjobs.eu>',
         to: 'hello@defjobs.eu',
         subject: `New Application: ${name}`,
         html: `
@@ -453,7 +452,6 @@ async function startServer() {
           <a href="https://defjobs.eu/admin/dashboard">View in Admin Panel</a>
         `
       });
-      console.log('Email result:', JSON.stringify(emailResult));
 
       res.json({ success: true });
     } catch (error) {
