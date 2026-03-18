@@ -143,7 +143,7 @@ export const translations = {
     pricing_help: 'Napište nám →',
     pricing_extra_mile: 'Náborové kampaně na míru',
     pricing_tailored_title: 'Potřebujete víc než inzerát?',
-    pricing_tailored_1: 'Vytvoříme a spustíme cílenou náborovou kampaň na sociálních sítích, která osloví přesně ty kandidáty, které hledáte — podle role, lokality a seniority.',
+    pricing_tailored_1: 'Vytvoříme a spustíme cílenou náborovou kampaň na sociálních sítích, která osloví přesně ty kandidáty, které hledáte - podle role, lokality a seniority.',
     pricing_tailored_2: 'Nabízíme také předvýběr kandidátů, hromadnou inzerci a komplexní náborová řešení pro obranné a letecké společnosti.',
     pricing_lets_talk: 'Kontaktujte nás →',
 
@@ -321,7 +321,7 @@ export const translations = {
     pricing_help: 'Get in touch →',
     pricing_extra_mile: 'Done-For-You Hiring Campaigns',
     pricing_tailored_title: 'Need More Than a Listing?',
-    pricing_tailored_1: 'We build and run targeted social media hiring campaigns that reach the exact candidates you need — by role, location, and seniority. You focus on interviews, we handle the pipeline.',
+    pricing_tailored_1: 'We build and run targeted social media hiring campaigns that reach the exact candidates you need - by role, location, and seniority. You focus on interviews, we handle the pipeline.',
     pricing_tailored_2: 'We also offer candidate pre-screening, bulk job postings, and end-to-end recruitment solutions for defense and aerospace companies.',
     pricing_lets_talk: 'Get in Touch →',
 

@@ -45,14 +45,14 @@ export function TermsPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">4. Payments</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              All payments for job listings are processed securely. Prices are listed in Euros (€) and exclude VAT where applicable. Refunds are considered on a case-by-case basis — please contact us within 48 hours of purchase if you have an issue.
+              All payments for job listings are processed securely. Prices are listed in Euros (€) and exclude VAT where applicable. Refunds are considered on a case-by-case basis - please contact us within 48 hours of purchase if you have an issue.
             </p>
           </section>
 
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">5. Intellectual Property</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              All content on DefJobs — including the logo, design, and written content — is the property of DefJobs. You may not reproduce or distribute any content without written permission.
+              All content on DefJobs - including the logo, design, and written content - is the property of DefJobs. You may not reproduce or distribute any content without written permission.
             </p>
           </section>
 

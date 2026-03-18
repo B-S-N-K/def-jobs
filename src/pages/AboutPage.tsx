@@ -33,7 +33,7 @@ export function AboutPage() {
             DefJobs was built to solve a real problem: defense and security companies struggle to find qualified civilian talent, while skilled professionals have no dedicated platform to find opportunities in this sector.
           </p>
           <p className="text-shield-text-lm leading-relaxed">
-            We bridge that gap — connecting Europe's leading defense contractors with the engineers, technicians, logistics specialists, IT professionals and managers who keep the industry running.
+            We bridge that gap - connecting Europe's leading defense contractors with the engineers, technicians, logistics specialists, IT professionals and managers who keep the industry running.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { title: 'Sector Focused', desc: 'Unlike general job boards, every listing on DefJobs is in defense, aerospace or security. No noise, only relevant opportunities.' },
-              { title: 'European Coverage', desc: 'We cover key defense markets across Europe — Germany, France, UK, Czech Republic, Poland and beyond.' },
+              { title: 'European Coverage', desc: 'We cover key defense markets across Europe - Germany, France, UK, Czech Republic, Poland and beyond.' },
               { title: 'Personal Service', desc: 'We\'re not just a platform. We go the extra mile for both employers and candidates to make every hire a success.' },
             ].map(item => (
               <div key={item.title} className="border-[1.5px] border-shield-border-l rounded-xl p-5">
@@ -68,7 +68,7 @@ export function AboutPage() {
             <h2 className="font-heading font-bold text-2xl text-shield-text-l uppercase tracking-wide">What We Cover</h2>
           </div>
           <p className="text-shield-text-lm leading-relaxed mb-4">
-            DefJobs covers civilian roles across the full defense supply chain — from prime contractors to tier-2 suppliers. Our listings span engineering, IT & cybersecurity, logistics, manufacturing, management, finance and administration.
+            DefJobs covers civilian roles across the full defense supply chain - from prime contractors to tier-2 suppliers. Our listings span engineering, IT & cybersecurity, logistics, manufacturing, management, finance and administration.
           </p>
           <p className="text-shield-text-lm leading-relaxed">
             We work with companies like Rheinmetall, Thales, Airbus and hundreds of smaller defense suppliers who need specialized talent but can't find it on general job boards.
@@ -81,7 +81,7 @@ export function AboutPage() {
             Ready to get started?
           </h2>
           <p className="text-shield-silver text-sm mb-6">
-            Whether you're looking for your next defense career move or need to hire top talent — we're here to help.
+            Whether you're looking for your next defense career move or need to hire top talent - we're here to help.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/jobs" className="bg-shield-navy-lt hover:bg-shield-navy-mid text-white font-bold px-6 py-3 rounded-xl transition-all hover:-translate-y-[1px]">

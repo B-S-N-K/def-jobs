@@ -289,8 +289,8 @@ export function AdminDashboardPage() {
               ) : alerts.map((alert, i) => (
                 <div key={i} className="grid grid-cols-4 gap-4 px-6 py-4 border-b border-shield-border-l last:border-0 text-sm">
                   <span className="text-shield-text-l font-medium">{alert.email}</span>
-                  <span className="text-shield-text-lm">{alert.keyword || '—'}</span>
-                  <span className="text-shield-text-lm">{alert.location || '—'}</span>
+                  <span className="text-shield-text-lm">{alert.keyword || '-'}</span>
+                  <span className="text-shield-text-lm">{alert.location || '-'}</span>
                   <span className="text-shield-text-lm">{new Date(alert.created_at).toLocaleDateString()}</span>
                 </div>
               ))}
