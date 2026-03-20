@@ -62,13 +62,13 @@ function AppContent() {
                 {t('footer_brand')}
               </p>
             </div>
-            
+               
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_candidates')}</h4>
               <ul className="space-y-2.5">
-                <li><Link to="/jobs" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_browse')}</Link></li>
-                <li><Link to="/companies" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_companies')}</Link></li>
-                <li><Link to="/salaries" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_salary')}</Link></li>
+                <li><Link to="/jobs" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_browse')}</Link></li>
+                <li><Link to="/companies" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_companies')}</Link></li>
+                <li><Link to="/salaries" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_salary')}</Link></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_cv')}</a></li>
               </ul>
             </div>
@@ -76,8 +76,8 @@ function AppContent() {
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_employers')}</h4>
               <ul className="space-y-2.5">
-                <li><Link to="/post-job" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_post')}</Link></li>
-                <li><Link to="/pricing" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_pricing')}</Link></li>
+                <li><Link to="/pricing" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_post')}</Link></li>
+                <li><Link to="/pricing" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_pricing')}</Link></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_promo')}</a></li>
                 <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_hr')}</a></li>
               </ul>
@@ -86,10 +86,10 @@ function AppContent() {
             <div>
               <h4 className="font-semibold text-shield-silver-lt text-xs tracking-widest uppercase mb-4">{t('footer_company')}</h4>
               <ul className="space-y-2.5">
-              <li><Link to="/about" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_about')}</Link></li>
-                <li><Link to="/privacy" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_privacy')}</Link></li>
-                <li><Link to="/terms" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_terms')}</Link></li>
-                <li><Link to="/contact" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_contact')}</Link></li>
+                <li><Link to="/about" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_about')}</Link></li>
+                <li><Link to="/privacy" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_privacy')}</Link></li>
+                <li><Link to="/terms" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_terms')}</Link></li>
+                <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_contact')}</Link></li>
               </ul>
             </div>
           </div>

@@ -51,7 +51,7 @@ export function Navbar() {
               </button>
             </div>
             <Link
-              to="/post-job"
+              to="/pricing"
               className="bg-shield-navy-lt hover:bg-shield-navy-mid text-white px-5 py-2 rounded-lg text-sm font-bold transition-all hover:-translate-y-[1px] tracking-wide"
             >
               {t('nav_hire')}
@@ -88,7 +88,7 @@ export function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link to="/jobs" className="text-shield-silver hover:text-white block px-3 py-2 text-base font-medium">{t('nav_jobs')}</Link>
             <Link to="/companies" className="text-shield-silver hover:text-white block px-3 py-2 text-base font-medium">{t('nav_companies')}</Link>
-            <Link to="/post-job" className="text-shield-accent hover:text-white block px-3 py-2 text-base font-medium">{t('nav_hire')}</Link>
+            <Link to="/pricing" className="text-shield-accent hover:text-white block px-3 py-2 text-base font-medium">{t('nav_hire')}</Link>
           </div>
         </div>
       )}

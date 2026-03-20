@@ -288,7 +288,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
         {/* Hire Banner */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white border-[1.5px] border-shield-border-l border-l-4 border-l-shield-navy-lt rounded-xl p-4 mb-6 gap-4">
           <p className="text-sm text-shield-text-lm">{t('banner_text')}</p>
-          <Link to="/post-job" className="bg-shield-black hover:bg-shield-navy-lt text-white text-sm font-semibold px-5 py-2 rounded-lg whitespace-nowrap transition-colors">
+          <Link to="/pricing" className="bg-shield-black hover:bg-shield-navy-lt text-white text-sm font-semibold px-5 py-2 rounded-lg whitespace-nowrap transition-colors">
             {t('banner_btn')}
           </Link>
         </div>
