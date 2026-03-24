@@ -16,7 +16,7 @@ export function PricingPage() {
       description: t('pricing_start_desc'),
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
-      priceId: 'price_1T9mst38H9O33X70Yz2XJWRP',
+      priceId: 'price_1TEXU53xsBdv5VKAGMeyYWUu',
       features: [
         t('pricing_f1'),
         t('pricing_f2'),
@@ -34,7 +34,7 @@ export function PricingPage() {
       color: 'border-shield-navy-lt',
       buttonColor: 'bg-shield-navy-lt hover:bg-shield-navy-mid',
       badge: t('pricing_most_popular'),
-      priceId: 'price_1T9mtU38H9O33X70DjAPurHL',
+      priceId: 'price_1TEXU53xsBdv5VKAhM7VZHl4',
       features: [
         t('pricing_f1'),
         t('pricing_f6'),
@@ -53,7 +53,7 @@ export function PricingPage() {
       description: t('pricing_elite_desc'),
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
-      priceId: 'price_1T9mtt38H9O33X70befGIiTG',
+      priceId: 'price_1TEXU53xsBdv5VKA8BM7PV7H',
       features: [
         t('pricing_f11'),
         t('pricing_f6'),
@@ -74,7 +74,7 @@ export function PricingPage() {
       color: 'border-shield-border-l',
       buttonColor: 'bg-shield-black hover:bg-shield-navy-lt',
       badge: t('pricing_best_value'),
-      priceId: 'price_1T9muY38H9O33X70zrQrBLJd',
+      priceId: 'price_1TEXU83xsBdv5VKA95MmBPnU',
       features: [
         t('pricing_f13'),
         t('pricing_f14'),
