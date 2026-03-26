@@ -16,7 +16,7 @@ import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
 import { PaymentSuccessPage } from '@/pages/PaymentSuccessPage';
 import { CookieBanner } from '@/components/CookieBanner';
 import { JobDetailPage } from '@/pages/JobDetailPage';
-import { Shield } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 import { TranslationProvider, useTranslation } from '@/lib/i18n';
 
 function AppContent() {
@@ -50,10 +50,8 @@ function AppContent() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div className="col-span-1 md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-8 w-8 bg-shield-navy-lt rounded-md flex items-center justify-center">
-                  <Shield className="h-4 w-4 text-white" />
-                </div>
+            <div className="flex items-center gap-2 mb-4">
+                <Logo variant="dark" type="icon" height={32} />
                 <span className="font-heading font-bold text-lg text-shield-off-white tracking-[0.12em] uppercase">
                   DefJobs
                 </span>

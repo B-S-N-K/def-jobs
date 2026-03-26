@@ -37,9 +37,9 @@ export function PrivacyPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">2. Categories of Data Subjects</h2>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>Job Seekers (Candidates)</strong> — individuals who browse job listings, submit applications, upload CVs, or sign up for job alerts</li>
-              <li><strong>Employers</strong> — representatives of companies who post job listings or purchase services</li>
-              <li><strong>Website Visitors</strong> — any person who visits defjobs.eu</li>
+              <li><strong>Job Seekers (Candidates)</strong> - individuals who browse job listings, submit applications, upload CVs, or sign up for job alerts</li>
+              <li><strong>Employers</strong> - representatives of companies who post job listings or purchase services</li>
+              <li><strong>Website Visitors</strong> - any person who visits defjobs.eu</li>
             </ul>
           </section>
 
@@ -58,8 +58,8 @@ export function PrivacyPage() {
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2 mt-4">3.2 Data collected automatically</h3>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
               <li><strong>Technical data:</strong> IP address (anonymized by GA4), browser type and version, operating system, device type</li>
-              <li><strong>Analytics data:</strong> Pages visited, time on pages, referral source, scroll depth, session duration — collected via Google Analytics 4 (only with your consent)</li>
-              <li><strong>Advertising data:</strong> Cross-site visitor identification for ad targeting — collected via Meta Pixel (only with your consent)</li>
+              <li><strong>Analytics data:</strong> Pages visited, time on pages, referral source, scroll depth, session duration - collected via Google Analytics 4 (only with your consent)</li>
+              <li><strong>Advertising data:</strong> Cross-site visitor identification for ad targeting - collected via Meta Pixel (only with your consent)</li>
               <li><strong>Cookies:</strong> See our <Link to="/cookies" className="text-shield-navy-lt hover:underline">Cookie Policy</Link> for a complete list</li>
             </ul>
 
@@ -139,13 +139,13 @@ export function PrivacyPage() {
 
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2">5.1 Sub-processors</h3>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>Supabase Inc.</strong> (USA, EU region) — Database hosting, CV file storage. EU-based servers, SOC 2 Type II. Transfer: SCCs.</li>
-              <li><strong>Railway Corp.</strong> (USA) — Application hosting. Transfer: SCCs.</li>
-              <li><strong>Stripe Inc.</strong> (USA / Stripe Payments Europe Ltd., Ireland) — Payment processing. SOC 1 &amp; 2. Transfer: SCCs + Binding Corporate Rules.</li>
-              <li><strong>Resend Inc.</strong> (USA) — Email delivery. Transfer: SCCs. Only email addresses and message content shared.</li>
-              <li><strong>Google Ireland Ltd. / Google LLC</strong> (Ireland/USA) — Website analytics via GA4. Transfer: EU-US Data Privacy Framework.</li>
-              <li><strong>Meta Platforms Ireland Ltd. / Meta Platforms Inc.</strong> (Ireland/USA) — Advertising tracking via Meta Pixel. Transfer: EU-US Data Privacy Framework + SCCs.</li>
-              <li><strong>Namecheap Inc.</strong> (USA) — Domain and email hosting. Transfer: SCCs.</li>
+              <li><strong>Supabase Inc.</strong> (USA, EU region) - Database hosting, CV file storage. EU-based servers, SOC 2 Type II. Transfer: SCCs.</li>
+              <li><strong>Railway Corp.</strong> (USA) - Application hosting. Transfer: SCCs.</li>
+              <li><strong>Stripe Inc.</strong> (USA / Stripe Payments Europe Ltd., Ireland) - Payment processing. SOC 1 &amp; 2. Transfer: SCCs + Binding Corporate Rules.</li>
+              <li><strong>Resend Inc.</strong> (USA) - Email delivery. Transfer: SCCs. Only email addresses and message content shared.</li>
+              <li><strong>Google Ireland Ltd. / Google LLC</strong> (Ireland/USA) - Website analytics via GA4. Transfer: EU-US Data Privacy Framework.</li>
+              <li><strong>Meta Platforms Ireland Ltd. / Meta Platforms Inc.</strong> (Ireland/USA) - Advertising tracking via Meta Pixel. Transfer: EU-US Data Privacy Framework + SCCs.</li>
+              <li><strong>Namecheap Inc.</strong> (USA) - Domain and email hosting. Transfer: SCCs.</li>
             </ul>
 
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2 mt-4">5.2 Employers (separate controllers)</h3>
@@ -180,14 +180,14 @@ export function PrivacyPage() {
               Contact <a href="mailto:hello@defjobs.eu" className="text-shield-navy-lt hover:underline">hello@defjobs.eu</a> to exercise any right. We respond within 30 days.
             </p>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>Right of access</strong> (Art. 15) — Request a copy of all personal data we hold about you</li>
-              <li><strong>Right to rectification</strong> (Art. 16) — Correct inaccurate or incomplete data</li>
-              <li><strong>Right to erasure</strong> (Art. 17) — Request deletion of your data</li>
-              <li><strong>Right to restriction</strong> (Art. 18) — Limit how we use your data</li>
-              <li><strong>Right to data portability</strong> (Art. 20) — Receive your data in JSON or CSV format</li>
-              <li><strong>Right to object</strong> (Art. 21) — Object to processing based on legitimate interest</li>
-              <li><strong>Right to withdraw consent</strong> (Art. 7(3)) — Withdraw at any time. For analytics/marketing cookies, use the Cookie Settings link in the footer</li>
-              <li><strong>Right to lodge a complaint</strong> — Czech DPA: ÚOOÚ, Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer" className="text-shield-navy-lt hover:underline">www.uoou.cz</a></li>
+              <li><strong>Right of access</strong> (Art. 15) - Request a copy of all personal data we hold about you</li>
+              <li><strong>Right to rectification</strong> (Art. 16) - Correct inaccurate or incomplete data</li>
+              <li><strong>Right to erasure</strong> (Art. 17) - Request deletion of your data</li>
+              <li><strong>Right to restriction</strong> (Art. 18) - Limit how we use your data</li>
+              <li><strong>Right to data portability</strong> (Art. 20) - Receive your data in JSON or CSV format</li>
+              <li><strong>Right to object</strong> (Art. 21) - Object to processing based on legitimate interest</li>
+              <li><strong>Right to withdraw consent</strong> (Art. 7(3)) - Withdraw at any time. For analytics/marketing cookies, use the Cookie Settings link in the footer</li>
+              <li><strong>Right to lodge a complaint</strong> - Czech DPA: ÚOOÚ, Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer" className="text-shield-navy-lt hover:underline">www.uoou.cz</a></li>
             </ul>
           </section>
 

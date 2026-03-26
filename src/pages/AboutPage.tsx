@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Target, Users, Globe } from 'lucide-react';
+import { Target, Users, Globe } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 
 export function AboutPage() {
   return (
     <div className="min-h-screen bg-shield-bg-light">
       {/* Header */}
       <div className="bg-shield-black py-16 px-4 text-center">
-        <div className="flex justify-center mb-6">
-          <div className="h-16 w-16 bg-shield-navy-lt rounded-2xl flex items-center justify-center">
-            <Shield className="h-8 w-8 text-white" />
-          </div>
+      <div className="flex justify-center mb-6">
+          <Logo variant="dark" type="icon" height={64} />
         </div>
         <h1 className="font-heading text-4xl sm:text-5xl font-extrabold text-shield-off-white uppercase tracking-tight mb-4">
           About DefJobs

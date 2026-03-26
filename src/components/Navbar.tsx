@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Logo } from '@/components/Logo';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/lib/i18n';
 
@@ -14,9 +15,7 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex-shrink-0 flex items-center gap-3 group">
-              <div className="h-8 w-8 bg-shield-navy-lt rounded-md flex items-center justify-center">
-                <Shield className="h-4 w-4 text-white" />
-              </div>
+            <Logo variant="dark" type="icon" height={32} />
               <span className="font-heading font-bold text-xl text-shield-off-white tracking-[0.12em] uppercase">
                 DefJobs
               </span>

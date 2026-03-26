@@ -183,7 +183,7 @@ export const translations = {
     new_pricing_badge: 'Každý inzerát zahrnuje placenou propagaci na sociálních sítích',
     new_pricing_h1: 'Defense Talent. Delivered.',
     new_pricing_sub: 'Oslovte kvalifikované odborníky v oblasti obrany a letectví po celé Evropě. Každý plán zahrnuje sociální kampaň — žádný jiný evropský pracovní portál pro obranu toto nenabízí.',
-    new_pricing_launch: '🚀 Období spuštění — Zveřejněte první inzerát zdarma',
+    new_pricing_launch: '🚀 Launch Period — Zveřejněte první inzerát zdarma',
     new_pricing_compare_show: 'Porovnat všechny funkce',
     new_pricing_compare_hide: 'Skrýt funkce',
     new_pricing_usp_title: 'Proč je sociální média součástí každého plánu',
