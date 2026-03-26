@@ -9,6 +9,7 @@ import { PricingPage } from '@/pages/PricingPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { PrivacyPage } from '@/pages/PrivacyPage';
 import { TermsPage } from '@/pages/TermsPage';
+import { CookiesPage } from '@/pages/CookiesPage';
 import { ContactPage } from '@/pages/ContactPage';
 import { AdminLoginPage } from '@/pages/AdminLoginPage';
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
@@ -37,12 +38,11 @@ function AppContent() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-          {/* Add more routes as we build them */}
         </Routes>
       </main>
       
@@ -89,6 +89,15 @@ function AppContent() {
                 <li><Link to="/about" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_about')}</Link></li>
                 <li><Link to="/privacy" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_privacy')}</Link></li>
                 <li><Link to="/terms" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_terms')}</Link></li>
+                <li><Link to="/cookies" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">Cookie Policy</Link></li>
+                <li>
+                  <button
+                    onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
+                    className="text-shield-silver hover:text-shield-accent text-sm transition-colors"
+                  >
+                    Cookie Settings
+                  </button>
+                </li>
                 <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_contact')}</Link></li>
               </ul>
             </div>

@@ -20,16 +20,32 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/shield-favicon.svg" />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDEBJ06FH6"></script>
+    <!-- ==========================================================
+         GOOGLE CONSENT MODE v2 — DEFAULT: ALL DENIED
+         This MUST come before any Google or Meta scripts.
+         No cookies are set until the user gives consent.
+         ========================================================== -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+    </script>
+
+    <!-- Google Analytics 4 — respects Consent Mode above -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDEBJ06FH6"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-EDEBJ06FH6');
     </script>
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel — consent revoked by default -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -39,15 +55,46 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('consent', 'revoke');
     fbq('init', '792046980643585');
     fbq('track', 'PageView');
     </script>
-    <!-- End Meta Pixel Code -->
+
+    <!-- ==========================================================
+         CONSENT BRIDGE — called by React CookieBanner component
+         ========================================================== -->
+    <script>
+      window.updateConsentState = function(analytics, marketing) {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': analytics ? 'granted' : 'denied',
+            'ad_storage': marketing ? 'granted' : 'denied',
+            'ad_user_data': marketing ? 'granted' : 'denied',
+            'ad_personalization': marketing ? 'granted' : 'denied'
+          });
+        }
+        if (typeof fbq === 'function') {
+          fbq('consent', marketing ? 'grant' : 'revoke');
+        }
+      };
+
+      // Restore consent from previous visit
+      (function() {
+        try {
+          var stored = localStorage.getItem('defjobs_cookie_consent');
+          if (stored) {
+            var consent = JSON.parse(stored);
+            if (consent && consent.analytics !== undefined) {
+              window.updateConsentState(consent.analytics, consent.marketing);
+            }
+          }
+        } catch(e) {}
+      })();
+    </script>
+
   </head>
   <body>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=792046980643585&ev=PageView&noscript=1"
-    /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
