@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#1a2942"/>
-  <path d="M16 4 L26 8 L26 16 C26 22 16 28 16 28 C16 28 6 22 6 16 L6 8 Z" fill="none" stroke="#38bdf8" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#0B1120" rx="16"/>
+  <g transform="translate(60, 62)">
+    <path
+      d="M0,-52 C26,-52 43,-45 48,-41 L48,4 C48,28 28,46 0,56 C-28,46 -48,28 -48,4 L-48,-41 C-43,-45 -26,-52 0,-52 Z"
+      fill="#F8FAFC"
+    />
+    <path
+      d="M0,-32 L24,30 L15,30 L0,-17 L-15,30 L-24,30 Z"
+      fill="#0B1120"
+    />
+  </g>
 </svg>
