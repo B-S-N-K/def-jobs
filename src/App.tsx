@@ -14,6 +14,7 @@ import { ContactPage } from '@/pages/ContactPage';
 import { AdminLoginPage } from '@/pages/AdminLoginPage';
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
 import { PaymentSuccessPage } from '@/pages/PaymentSuccessPage';
+import { EmployerPortalPage } from '@/pages/EmployerPortalPage';
 import { CookieBanner } from '@/components/CookieBanner';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Logo } from '@/components/Logo';
@@ -41,6 +42,7 @@ function AppContent() {
           <Route path="/cookies" element={<CookiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
+          <Route path="/employer/:token" element={<EmployerPortalPage />} />
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         </Routes>

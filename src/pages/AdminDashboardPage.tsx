@@ -19,13 +19,17 @@ interface Job {
 
 export function AdminDashboardPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'jobs' | 'trash' | 'applications' | 'alerts' | 'contacts'>('jobs');
+  const [activeTab, setActiveTab] = useState<'jobs' | 'trash' | 'applications' | 'alerts' | 'contacts' | 'tokens'>('jobs');
   const [jobs, setJobs] = useState<Job[]>([]);
   const [trashedJobs, setTrashedJobs] = useState<Job[]>([]);
   const [applications, setApplications] = useState<any[]>([]);
   const [alerts, setAlerts] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [tokenJobId, setTokenJobId] = useState('');
+  const [tokenEmployerName, setTokenEmployerName] = useState('');
+  const [tokenEmployerEmail, setTokenEmployerEmail] = useState('');
+  const [generatedToken, setGeneratedToken] = useState('');
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -97,6 +101,22 @@ export function AdminDashboardPage() {
     fetchAll();
   };
 
+  const handleGenerateToken = async () => {
+    const res = await fetch('/api/admin/generate-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jobId: parseInt(tokenJobId),
+        employerEmail: tokenEmployerEmail,
+        employerName: tokenEmployerName,
+      }),
+    });
+    const data = await res.json();
+    if (data.url) {
+      setGeneratedToken(data.url);
+    }
+  };
+
   const handleToggleFeatured = async (job: Job) => {
     await fetch(`/api/jobs/${job.id}`, {
       method: 'PATCH',
@@ -124,13 +144,14 @@ export function AdminDashboardPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
           {[
             { label: 'Jobs', value: jobs.length, icon: Eye, tab: 'jobs' },
             { label: 'Trash', value: trashedJobs.length, icon: Trash2, tab: 'trash' },
             { label: 'Applications', value: applications.length, icon: Mail, tab: 'applications' },
             { label: 'Alerts', value: alerts.length, icon: Bell, tab: 'alerts' },
             { label: 'Messages', value: contacts.length, icon: MessageSquare, tab: 'contacts' },
+            { label: 'Portals', value: 0, icon: Eye, tab: 'tokens' },
           ].map(stat => (
             <button
               key={stat.label}
@@ -232,6 +253,69 @@ export function AdminDashboardPage() {
                 ))}
               </div>
             )}
+          </div>
+        )}
+
+{/* Employer Tokens Tab */}
+{activeTab === 'tokens' && (
+          <div>
+            <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase mb-4">Generate Employer Portal</h2>
+            <div className="bg-white border-[1.5px] border-shield-border-l rounded-2xl p-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                  <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">Job</label>
+                  <select
+                    className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-3 py-2.5 text-sm outline-none"
+                    value={tokenJobId}
+                    onChange={e => setTokenJobId(e.target.value)}
+                  >
+                    <option value="">Select a job...</option>
+                    {jobs.map(job => (
+                      <option key={job.id} value={job.id}>{job.title} — {job.company}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">Employer Name</label>
+                  <input
+                    type="text"
+                    className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-3 py-2.5 text-sm outline-none"
+                    placeholder="e.g. John Smith"
+                    value={tokenEmployerName}
+                    onChange={e => setTokenEmployerName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-shield-text-lm mb-1.5 uppercase tracking-wider">Employer Email</label>
+                  <input
+                    type="email"
+                    className="w-full bg-shield-bg-light border-[1.5px] border-shield-border-l rounded-xl px-3 py-2.5 text-sm outline-none"
+                    placeholder="employer@company.com"
+                    value={tokenEmployerEmail}
+                    onChange={e => setTokenEmployerEmail(e.target.value)}
+                  />
+                </div>
+              </div>
+              <button
+                onClick={handleGenerateToken}
+                disabled={!tokenJobId || !tokenEmployerEmail}
+                className="bg-shield-navy-lt hover:bg-shield-navy-mid text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-colors disabled:opacity-50"
+              >
+                Generate Portal Link
+              </button>
+              {generatedToken && (
+                <div className="mt-4 bg-green-50 border border-green-200 rounded-xl p-4">
+                  <p className="text-green-700 text-xs font-bold mb-2">✅ Portal link generated!</p>
+                  <p className="text-green-700 text-xs break-all">{generatedToken}</p>
+                  <button
+                    onClick={() => navigator.clipboard.writeText(generatedToken)}
+                    className="mt-2 text-xs text-green-700 hover:underline font-semibold"
+                  >
+                    Copy to clipboard
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
 

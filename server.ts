@@ -287,6 +287,82 @@ async function startServer() {
     }
   });
 
+  // Generate employer token (admin only)
+  app.post("/api/admin/generate-token", async (req, res) => {
+    try {
+      const { jobId, employerEmail, employerName } = req.body;
+      const token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+      
+      const { error } = await supabaseAdmin
+        .from('employer_tokens')
+        .insert([{ token, job_id: jobId, employer_email: employerEmail, employer_name: employerName }]);
+
+      if (error) return res.status(500).json({ error: 'Failed to generate token' });
+      res.json({ token, url: `${req.headers.origin}/employer/${token}` });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to generate token' });
+    }
+  });
+
+  // Employer portal data
+  app.get("/api/employer/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+
+      const { data: tokenData, error: tokenError } = await supabaseAdmin
+        .from('employer_tokens')
+        .select('*, jobs(title, company, location, type, salary, posted_at)')
+        .eq('token', token)
+        .single();
+
+      if (tokenError || !tokenData) return res.status(404).json({ error: 'Invalid or expired token' });
+      if (new Date(tokenData.expires_at) < new Date()) return res.status(403).json({ error: 'Token expired' });
+
+      const { data: applications, error: appError } = await supabaseAdmin
+        .from('applications')
+        .select('*')
+        .eq('job_id', tokenData.job_id)
+        .order('created_at', { ascending: false });
+
+      if (appError) return res.status(500).json({ error: 'Failed to fetch applications' });
+
+      res.json({
+        job: tokenData.jobs,
+        employer: { name: tokenData.employer_name, email: tokenData.employer_email },
+        applications: applications || [],
+        expires_at: tokenData.expires_at
+      });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch employer data' });
+    }
+  });
+
+  // Employer CV download (signed URL)
+  app.get("/api/employer/:token/cv/:fileName", async (req, res) => {
+    try {
+      const { token, fileName } = req.params;
+
+      // Verify token is valid
+      const { data: tokenData, error } = await supabaseAdmin
+        .from('employer_tokens')
+        .select('id, expires_at')
+        .eq('token', token)
+        .single();
+
+      if (error || !tokenData) return res.status(404).json({ error: 'Invalid token' });
+      if (new Date(tokenData.expires_at) < new Date()) return res.status(403).json({ error: 'Token expired' });
+
+      const { data, error: urlError } = await supabaseAdmin.storage
+        .from('cvs')
+        .createSignedUrl(fileName, 3600);
+
+      if (urlError) return res.status(500).json({ error: 'Failed to generate CV URL' });
+      res.json({ url: data.signedUrl });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to generate CV URL' });
+    }
+  });
+  
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, message } = req.body;
