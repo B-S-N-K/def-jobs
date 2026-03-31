@@ -512,6 +512,22 @@ async function startServer() {
         return res.status(500).json({ error: "Failed to submit application" });
       }
 
+      // Send confirmation email to candidate
+      await resend.emails.send({
+        from: 'DefJobs <noreply@contact.defjobs.eu>',
+        to: email,
+        subject: `Application received — ${name}`,
+        html: `
+          <h2>Application Received ✅</h2>
+          <p>Hi ${name},</p>
+          <p>Thank you for your application. We've received your CV and forwarded it to the employer.</p>
+          <p>We'll be in touch if there's an update. In the meantime, keep an eye on <a href="https://defjobs.eu">defjobs.eu</a> for new opportunities.</p>
+          <br/>
+          <p>Good luck!</p>
+          <p>The DefJobs Team</p>
+        `
+      });
+      
       // Send email notification
       await resend.emails.send({
         from: 'DefJobs <noreply@contact.defjobs.eu>',
