@@ -27,7 +27,7 @@ export function CookiesPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">2. How We Use Cookies</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              DefHire (defjobs.eu) uses cookies in three categories: strictly necessary, analytics, and marketing.
+              DefJobs (defjobs.eu) uses cookies in three categories: strictly necessary, analytics, and marketing.
               Non-essential cookies (analytics and marketing) are <strong>only activated after you give explicit consent</strong> via our cookie banner.
             </p>
           </section>
@@ -58,7 +58,7 @@ export function CookiesPage() {
                     <td className="p-3 font-mono text-xs">defjobs_cookie_consent</td>
                     <td className="p-3 text-shield-text-lm text-xs">Stores your cookie consent preferences</td>
                     <td className="p-3 text-shield-text-lm text-xs">12 months</td>
-                    <td className="p-3 text-shield-text-lm text-xs">DefHire (1st party)</td>
+                    <td className="p-3 text-shield-text-lm text-xs">DefJobs (1st party)</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-mono text-xs">sb-*-auth-token</td>
@@ -182,7 +182,7 @@ export function CookiesPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">5. Google Consent Mode v2</h2>
             <p className="text-shield-text-lm leading-relaxed text-sm">
-              DefHire implements Google Consent Mode v2, mandatory for websites using Google services with EEA visitors since March 2024.
+              DefJobs implements Google Consent Mode v2, mandatory for websites using Google services with EEA visitors since March 2024.
               By default, all consent signals are set to &quot;denied.&quot; When you accept analytics cookies, the analytics_storage
               signal is updated to &quot;granted.&quot; When you accept marketing cookies, the ad_storage, ad_user_data, and ad_personalization
               signals are updated to &quot;granted.&quot;

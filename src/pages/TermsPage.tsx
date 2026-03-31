@@ -20,7 +20,7 @@ export function TermsPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">1. Introduction and Scope</h2>
             <p className="text-shield-text-lm leading-relaxed mb-3">
-              These Terms of Service (&quot;Terms&quot;) govern your access to and use of the DefHire platform (&quot;Platform&quot;), accessible at defjobs.eu, operated by [Martin Shon], IČO: [21047987] (&quot;we&quot;, &quot;us&quot;, &quot;DefHire&quot;).
+              These Terms of Service (&quot;Terms&quot;) govern your access to and use of the DefJobs platform (&quot;Platform&quot;), accessible at defjobs.eu, operated by [Martin Shon], IČO: [21047987] (&quot;we&quot;, &quot;us&quot;, &quot;DefJobs&quot;).
             </p>
             <p className="text-shield-text-lm leading-relaxed">
               By accessing or using the Platform, you agree to these Terms, our{' '}
@@ -33,7 +33,7 @@ export function TermsPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">2. Definitions</h2>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>&quot;Platform&quot;</strong> - the DefHire website at defjobs.eu and all associated services</li>
+              <li><strong>&quot;Platform&quot;</strong> - the DefJobs website at defjobs.eu and all associated services</li>
               <li><strong>&quot;User&quot;</strong> - any person who accesses the Platform, including Candidates and Employers</li>
               <li><strong>&quot;Candidate&quot;</strong> - an individual who browses listings, submits applications, or subscribes to alerts</li>
               <li><strong>&quot;Employer&quot;</strong> - a company or its representative that posts job listings or purchases services</li>
@@ -113,10 +113,10 @@ export function TermsPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">7. Limitation of Liability</h2>
             <p className="text-shield-text-lm leading-relaxed text-sm mb-3">
-              DefHire is an intermediary. We do not guarantee employment outcomes, verify all posted information, or become party to employment contracts.
+              DefJobs is an intermediary. We do not guarantee employment outcomes, verify all posted information, or become party to employment contracts.
             </p>
             <p className="text-shield-text-lm leading-relaxed text-sm">
-              Maximum liability: the amount paid to DefHire in the 12 months preceding the claim, or EUR 100, whichever is greater.
+              Maximum liability: the amount paid to DefJobs in the 12 months preceding the claim, or EUR 100, whichever is greater.
             </p>
           </section>
 
