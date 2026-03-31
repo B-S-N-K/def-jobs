@@ -78,7 +78,7 @@ export function PrivacyPage() {
             <div className="space-y-5">
               <div className="p-4 bg-shield-bg-light rounded-xl">
                 <h3 className="font-heading font-bold text-sm text-shield-text-l uppercase tracking-wide mb-1">4.1 Job application processing</h3>
-                <p className="text-shield-text-lm text-sm"><strong>Purpose:</strong> Forward your application and CV to the relevant employer.</p>
+                <p className="text-shield-text-lm text-sm"><strong>Purpose:</strong> Make your application and CV accessible to the relevant employer via a secure employer portal.</p>
                 <p className="text-shield-text-lm text-sm"><strong>Legal basis:</strong> Pre-contractual measures (Art. 6(1)(b)) and your consent (Art. 6(1)(a)).</p>
                 <p className="text-shield-text-lm text-sm"><strong>Retention:</strong> 6 months after application date, then deleted.</p>
               </div>
@@ -149,8 +149,14 @@ export function PrivacyPage() {
             </ul>
 
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2 mt-4">5.2 Employers (separate controllers)</h3>
+            <p className="text-shield-text-lm text-sm leading-relaxed mb-2">
+              When you submit a job application, your application data (name, email, message, and CV) is made accessible to the employer who posted the listing via a secure employer portal. The employer receives a unique, secret portal link that allows them to view applications and download CVs for their listing(s).
+            </p>
+            <p className="text-shield-text-lm text-sm leading-relaxed mb-2">
+              CV files are not directly shared — employers access them via time-limited signed URLs that expire after 1 hour. Each access generates a new temporary link.
+            </p>
             <p className="text-shield-text-lm text-sm leading-relaxed">
-              When you submit a job application, your data is forwarded to the employer who posted the listing. That employer becomes an independent data controller.
+              Once an employer accesses your data through the portal, they become an independent data controller for the data they have viewed or downloaded. We recommend reviewing each employer&apos;s own privacy policy.
             </p>
 
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2 mt-4">5.3 We do NOT share data with</h3>
@@ -200,7 +206,9 @@ export function PrivacyPage() {
               <li>CV files in private Supabase Storage bucket (server-side signed URLs only)</li>
               <li>Stripe webhook signature verification</li>
               <li>Environment variables for all API keys (never client-side)</li>
-              <li>Access to personal data limited to the platform operator only</li>
+              <li>Employer portal access via unique secret token URLs (not guessable, not indexed by search engines)</li>
+              <li>CV downloads via time-limited signed URLs (expire after 1 hour)</li>
+              <li>Access to admin panel limited to the platform operator only</li>
             </ul>
           </section>
 

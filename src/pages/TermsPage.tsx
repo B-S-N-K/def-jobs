@@ -80,6 +80,9 @@ export function TermsPage() {
               <li>Process candidate data received via the Platform in GDPR compliance as an independent controller</li>
               <li>Do not use candidate data beyond recruitment for the specific applied position</li>
               <li>Do not share candidate CVs with third parties without explicit consent</li>
+              <li>Keep your employer portal link confidential — do not share it publicly or with unauthorized persons</li>
+              <li>Do not bulk-download or scrape candidate data from the employer portal</li>
+              <li>Delete any downloaded CVs once the recruitment process for the relevant position is complete</li>
             </ul>
 
             <h3 className="font-heading font-bold text-sm text-shield-navy-lt uppercase tracking-wide mb-2 mt-4">4.3 Candidate-specific obligations</h3>
