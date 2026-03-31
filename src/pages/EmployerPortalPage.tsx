@@ -85,7 +85,7 @@ export function EmployerPortalPage() {
             <Shield className="h-4 w-4 text-white" />
           </div>
           <span className="font-heading font-bold text-shield-off-white tracking-widest uppercase">DefJobs</span>
-          <span className="text-shield-silver text-sm">— Employer Portal</span>
+          <span className="text-shield-silver text-sm">- Employer Portal</span>
         </div>
         <div className="text-shield-silver text-xs">
           Access expires: {new Date(data.expires_at).toLocaleDateString()}
@@ -132,7 +132,7 @@ export function EmployerPortalPage() {
           <div className="bg-white border-[1.5px] border-shield-border-l rounded-2xl p-12 text-center">
             <div className="text-4xl mb-4">📭</div>
             <h3 className="font-bold text-shield-text-l mb-2">No applications yet</h3>
-            <p className="text-shield-text-lm text-sm">Check back soon — your listing is live and being promoted.</p>
+            <p className="text-shield-text-lm text-sm">Check back soon - your listing is live and being promoted.</p>
           </div>
         ) : (
           <div className="space-y-4">

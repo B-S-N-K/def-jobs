@@ -33,10 +33,10 @@ export function TermsPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">2. Definitions</h2>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>&quot;Platform&quot;</strong> — the DefHire website at defjobs.eu and all associated services</li>
-              <li><strong>&quot;User&quot;</strong> — any person who accesses the Platform, including Candidates and Employers</li>
-              <li><strong>&quot;Candidate&quot;</strong> — an individual who browses listings, submits applications, or subscribes to alerts</li>
-              <li><strong>&quot;Employer&quot;</strong> — a company or its representative that posts job listings or purchases services</li>
+              <li><strong>&quot;Platform&quot;</strong> - the DefHire website at defjobs.eu and all associated services</li>
+              <li><strong>&quot;User&quot;</strong> - any person who accesses the Platform, including Candidates and Employers</li>
+              <li><strong>&quot;Candidate&quot;</strong> - an individual who browses listings, submits applications, or subscribes to alerts</li>
+              <li><strong>&quot;Employer&quot;</strong> - a company or its representative that posts job listings or purchases services</li>
             </ul>
           </section>
 
@@ -80,7 +80,7 @@ export function TermsPage() {
               <li>Process candidate data received via the Platform in GDPR compliance as an independent controller</li>
               <li>Do not use candidate data beyond recruitment for the specific applied position</li>
               <li>Do not share candidate CVs with third parties without explicit consent</li>
-              <li>Keep your employer portal link confidential — do not share it publicly or with unauthorized persons</li>
+              <li>Keep your employer portal link confidential - do not share it publicly or with unauthorized persons</li>
               <li>Do not bulk-download or scrape candidate data from the employer portal</li>
               <li>Delete any downloaded CVs once the recruitment process for the relevant position is complete</li>
             </ul>

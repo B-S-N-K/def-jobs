@@ -52,7 +52,7 @@ export function Logo({
       height={height}
       className={className}
       role="img"
-      aria-label="DefJobs — Defense Talent. Delivered."
+      aria-label="DefJobs - Defense Talent. Delivered."
     >
       <g transform="translate(56, 60)">
         <path

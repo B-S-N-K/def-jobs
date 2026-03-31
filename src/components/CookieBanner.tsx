@@ -142,7 +142,7 @@ export function CookieBanner() {
           {/* Categories */}
           <div className="p-5 space-y-4">
 
-            {/* Necessary — always on */}
+            {/* Necessary - always on */}
             <div className="flex items-start justify-between gap-4 p-3 bg-shield-bg-light rounded-xl">
               <div className="flex-1">
                 <p className="font-heading font-bold text-sm text-shield-text-l uppercase tracking-wide">
@@ -166,7 +166,7 @@ export function CookieBanner() {
                   Analytics
                 </p>
                 <p className="text-xs text-shield-text-lm mt-1 leading-relaxed">
-                  Google Analytics 4 — helps us understand how visitors use the site so we can improve it. Sets <code className="text-xs bg-shield-border-l/30 px-1 rounded">_ga</code> cookies.
+                  Google Analytics 4 - helps us understand how visitors use the site so we can improve it. Sets <code className="text-xs bg-shield-border-l/30 px-1 rounded">_ga</code> cookies.
                 </p>
               </div>
               <div className="flex-shrink-0 mt-1">
@@ -191,7 +191,7 @@ export function CookieBanner() {
                   Marketing
                 </p>
                 <p className="text-xs text-shield-text-lm mt-1 leading-relaxed">
-                  Meta Pixel — measures ad campaign effectiveness and enables retargeting on Facebook/Instagram. Sets <code className="text-xs bg-shield-border-l/30 px-1 rounded">_fbp</code> cookies. Data is shared with Meta.
+                  Meta Pixel - measures ad campaign effectiveness and enables retargeting on Facebook/Instagram. Sets <code className="text-xs bg-shield-border-l/30 px-1 rounded">_fbp</code> cookies. Data is shared with Meta.
                 </p>
               </div>
               <div className="flex-shrink-0 mt-1">
@@ -246,14 +246,14 @@ export function CookieBanner() {
               We use cookies
             </p>
             <p className="text-shield-silver text-xs leading-relaxed">
-              We use essential cookies to make our site work. We'd also like to use analytics and marketing cookies to improve our site and measure ad performance — but only with your permission. Read our{' '}
+              We use essential cookies to make our site work. We'd also like to use analytics and marketing cookies to improve our site and measure ad performance - but only with your permission. Read our{' '}
               <Link to="/privacy" className="text-shield-accent hover:underline">Privacy Policy</Link>{' '}and{' '}
               <Link to="/cookies" className="text-shield-accent hover:underline">Cookie Policy</Link>.
             </p>
           </div>
         </div>
 
-        {/* Buttons — EQUAL visual prominence as required by GDPR enforcement */}
+        {/* Buttons - EQUAL visual prominence as required by GDPR enforcement */}
         <div className="flex flex-col sm:flex-row items-stretch gap-2 mt-4">
           <button
             onClick={handleRejectAll}

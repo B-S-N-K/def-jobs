@@ -21,7 +21,7 @@ export function PrivacyPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">1. Data Controller</h2>
             <p className="text-shield-text-lm leading-relaxed mb-3">
-              DefHire (operated via defjobs.eu) is a job board platform connecting civilian professionals with European defense and aerospace employers.
+              DefJobs (operated via defjobs.eu) is a job board platform connecting civilian professionals with European defense and aerospace employers.
             </p>
             <ul className="text-shield-text-lm space-y-1.5 text-sm leading-relaxed">
               <li><strong>Controller:</strong> [Martin Shon], IČO: [21047987]</li>
@@ -153,7 +153,7 @@ export function PrivacyPage() {
               When you submit a job application, your application data (name, email, message, and CV) is made accessible to the employer who posted the listing via a secure employer portal. The employer receives a unique, secret portal link that allows them to view applications and download CVs for their listing(s).
             </p>
             <p className="text-shield-text-lm text-sm leading-relaxed mb-2">
-              CV files are not directly shared — employers access them via time-limited signed URLs that expire after 1 hour. Each access generates a new temporary link.
+              CV files are not directly shared - employers access them via time-limited signed URLs that expire after 1 hour. Each access generates a new temporary link.
             </p>
             <p className="text-shield-text-lm text-sm leading-relaxed">
               Once an employer accesses your data through the portal, they become an independent data controller for the data they have viewed or downloaded. We recommend reviewing each employer&apos;s own privacy policy.
@@ -232,7 +232,7 @@ export function PrivacyPage() {
           <section>
             <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase tracking-wide mb-3">10. Children&apos;s Data</h2>
             <p className="text-shield-text-lm leading-relaxed">
-              DefHire is not intended for individuals under 16. We do not knowingly collect data from children. If discovered, we will delete it promptly.
+              DefJobs is not intended for individuals under 16. We do not knowingly collect data from children. If discovered, we will delete it promptly.
             </p>
           </section>
 

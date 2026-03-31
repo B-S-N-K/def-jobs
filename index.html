@@ -11,7 +11,7 @@
     <meta name="author" content="DefJobs" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph (for sharing on LinkedIn, Facebook etc) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://defjobs.eu/" />
     <meta property="og:title" content="DefJobs - Defense & Aerospace Jobs in Europe" />
@@ -20,11 +20,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/shield-favicon.svg" />
 
-    <!-- ==========================================================
-         GOOGLE CONSENT MODE v2 — DEFAULT: ALL DENIED
-         This MUST come before any Google or Meta scripts.
-         No cookies are set until the user gives consent.
-         ========================================================== -->
+    <!-- Google Consent Mode v2 — MUST come before any Google or Meta scripts -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -36,6 +32,32 @@
         'ad_personalization': 'denied',
         'wait_for_update': 500
       });
+
+      window.updateConsentState = function(analytics, marketing) {
+        gtag('consent', 'update', {
+          'analytics_storage': analytics ? 'granted' : 'denied',
+          'ad_storage': marketing ? 'granted' : 'denied',
+          'ad_user_data': marketing ? 'granted' : 'denied',
+          'ad_personalization': marketing ? 'granted' : 'denied'
+        });
+        if (typeof fbq === 'function') {
+          fbq('consent', marketing ? 'grant' : 'revoke');
+        }
+      };
+
+      (function() {
+        try {
+          var raw = localStorage.getItem('defjobs_cookie_consent');
+          if (raw) {
+            var consent = JSON.parse(raw);
+            var consentDate = new Date(consent.timestamp);
+            var daysDiff = (Date.now() - consentDate.getTime()) / (1000 * 60 * 60 * 24);
+            if (daysDiff <= 365) {
+              window.updateConsentState(consent.analytics === true, consent.marketing === true);
+            }
+          }
+        } catch(e) {}
+      })();
     </script>
 
     <!-- Google Analytics 4 — respects Consent Mode above -->
@@ -55,42 +77,9 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-
     fbq('consent', 'revoke');
     fbq('init', '792046980643585');
     fbq('track', 'PageView');
-    </script>
-
-    <!-- ==========================================================
-         CONSENT BRIDGE — called by React CookieBanner component
-         ========================================================== -->
-    <script>
-      window.updateConsentState = function(analytics, marketing) {
-        if (typeof gtag === 'function') {
-          gtag('consent', 'update', {
-            'analytics_storage': analytics ? 'granted' : 'denied',
-            'ad_storage': marketing ? 'granted' : 'denied',
-            'ad_user_data': marketing ? 'granted' : 'denied',
-            'ad_personalization': marketing ? 'granted' : 'denied'
-          });
-        }
-        if (typeof fbq === 'function') {
-          fbq('consent', marketing ? 'grant' : 'revoke');
-        }
-      };
-
-      // Restore consent from previous visit
-      (function() {
-        try {
-          var stored = localStorage.getItem('defjobs_cookie_consent');
-          if (stored) {
-            var consent = JSON.parse(stored);
-            if (consent && consent.analytics !== undefined) {
-              window.updateConsentState(consent.analytics, consent.marketing);
-            }
-          }
-        } catch(e) {}
-      })();
     </script>
 
   </head>

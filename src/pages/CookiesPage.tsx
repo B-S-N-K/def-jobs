@@ -78,7 +78,7 @@ export function CookiesPage() {
 
             {/* ANALYTICS */}
             <h3 className="font-heading font-bold text-base text-shield-navy-lt uppercase tracking-wide mb-2 mt-8">
-              3.2 Analytics Cookies — Require Consent
+              3.2 Analytics Cookies - Require Consent
             </h3>
             <p className="text-shield-text-lm leading-relaxed text-sm mb-4">
               Only set <strong>after</strong> you consent to the &quot;Analytics&quot; category. If rejected, Google Analytics does not load.
@@ -97,13 +97,13 @@ export function CookiesPage() {
                 <tbody className="divide-y divide-shield-border-l">
                   <tr>
                     <td className="p-3 font-mono text-xs">_ga</td>
-                    <td className="p-3 text-shield-text-lm text-xs">Google Analytics 4 — distinguishes unique visitors</td>
+                    <td className="p-3 text-shield-text-lm text-xs">Google Analytics 4 - distinguishes unique visitors</td>
                     <td className="p-3 text-shield-text-lm text-xs">2 years</td>
                     <td className="p-3 text-shield-text-lm text-xs">Google (1st party via gtag.js)</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-mono text-xs">_ga_*</td>
-                    <td className="p-3 text-shield-text-lm text-xs">Google Analytics 4 — tracks session state</td>
+                    <td className="p-3 text-shield-text-lm text-xs">Google Analytics 4 - tracks session state</td>
                     <td className="p-3 text-shield-text-lm text-xs">2 years</td>
                     <td className="p-3 text-shield-text-lm text-xs">Google (1st party via gtag.js)</td>
                   </tr>
@@ -118,7 +118,7 @@ export function CookiesPage() {
 
             {/* MARKETING */}
             <h3 className="font-heading font-bold text-base text-shield-navy-lt uppercase tracking-wide mb-2 mt-8">
-              3.3 Marketing Cookies — Require Consent
+              3.3 Marketing Cookies - Require Consent
             </h3>
             <p className="text-shield-text-lm leading-relaxed text-sm mb-4">
               Only set <strong>after</strong> you consent to the &quot;Marketing&quot; category. If rejected, the Meta Pixel does not fire.
@@ -137,19 +137,19 @@ export function CookiesPage() {
                 <tbody className="divide-y divide-shield-border-l">
                   <tr>
                     <td className="p-3 font-mono text-xs">_fbp</td>
-                    <td className="p-3 text-shield-text-lm text-xs">Meta Pixel — browser identifier for ad targeting</td>
+                    <td className="p-3 text-shield-text-lm text-xs">Meta Pixel - browser identifier for ad targeting</td>
                     <td className="p-3 text-shield-text-lm text-xs">90 days</td>
                     <td className="p-3 text-shield-text-lm text-xs">Meta (1st party via fbevents.js)</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-mono text-xs">_fbc</td>
-                    <td className="p-3 text-shield-text-lm text-xs">Meta Pixel — Facebook ad click attribution</td>
+                    <td className="p-3 text-shield-text-lm text-xs">Meta Pixel - Facebook ad click attribution</td>
                     <td className="p-3 text-shield-text-lm text-xs">90 days</td>
                     <td className="p-3 text-shield-text-lm text-xs">Meta (1st party via fbevents.js)</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-mono text-xs">fr</td>
-                    <td className="p-3 text-shield-text-lm text-xs">Meta — ad delivery and retargeting across sites</td>
+                    <td className="p-3 text-shield-text-lm text-xs">Meta - ad delivery and retargeting across sites</td>
                     <td className="p-3 text-shield-text-lm text-xs">90 days</td>
                     <td className="p-3 text-shield-text-lm text-xs">Meta (3rd party, facebook.com)</td>
                   </tr>
@@ -169,9 +169,9 @@ export function CookiesPage() {
               When you first visit defjobs.eu, you see a cookie consent banner with three options:
             </p>
             <ul className="list-disc list-inside text-shield-text-lm space-y-2 text-sm leading-relaxed">
-              <li><strong>Accept All</strong> — enables all cookie categories (necessary + analytics + marketing)</li>
-              <li><strong>Reject All</strong> — only strictly necessary cookies are set</li>
-              <li><strong>Customize</strong> — choose individual categories independently</li>
+              <li><strong>Accept All</strong> - enables all cookie categories (necessary + analytics + marketing)</li>
+              <li><strong>Reject All</strong> - only strictly necessary cookies are set</li>
+              <li><strong>Customize</strong> - choose individual categories independently</li>
             </ul>
             <p className="text-shield-text-lm leading-relaxed text-sm mt-3">
               Your consent is stored for 12 months, after which you will be asked again. You can change your preferences

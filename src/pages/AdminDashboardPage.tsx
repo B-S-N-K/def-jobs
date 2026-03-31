@@ -271,7 +271,7 @@ export function AdminDashboardPage() {
                   >
                     <option value="">Select a job...</option>
                     {jobs.map(job => (
-                      <option key={job.id} value={job.id}>{job.title} — {job.company}</option>
+                      <option key={job.id} value={job.id}>{job.title} - {job.company}</option>
                     ))}
                   </select>
                 </div>
