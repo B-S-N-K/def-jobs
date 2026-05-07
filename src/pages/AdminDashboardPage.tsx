@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, LogOut, Plus, Trash2, Eye, Mail, Bell, MessageSquare, RotateCcw, AlertTriangle } from 'lucide-react';
+import { Shield, LogOut, Plus, Trash2, Eye, Mail, Bell, MessageSquare, RotateCcw, AlertTriangle, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 interface Job {
@@ -19,12 +19,13 @@ interface Job {
 
 export function AdminDashboardPage() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'jobs' | 'trash' | 'applications' | 'alerts' | 'contacts' | 'tokens'>('jobs');
+  const [activeTab, setActiveTab] = useState<'jobs' | 'trash' | 'applications' | 'alerts' | 'contacts' | 'tokens' | 'talent'>('jobs');
   const [jobs, setJobs] = useState<Job[]>([]);
   const [trashedJobs, setTrashedJobs] = useState<Job[]>([]);
   const [applications, setApplications] = useState<any[]>([]);
   const [alerts, setAlerts] = useState<any[]>([]);
   const [contacts, setContacts] = useState<any[]>([]);
+  const [talentPool, setTalentPool] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [tokenJobId, setTokenJobId] = useState('');
   const [tokenEmployerName, setTokenEmployerName] = useState('');
@@ -47,6 +48,7 @@ export function AdminDashboardPage() {
     fetchApplications();
     fetchAlerts();
     fetchContacts();
+    fetchTalentPool();
   };
 
   const fetchJobs = async () => {
@@ -78,6 +80,11 @@ export function AdminDashboardPage() {
     const res = await fetch('/api/admin/contacts');
     const data = await res.json();
     setContacts(data);
+  };
+  const fetchTalentPool = async () => {
+    const res = await fetch('/api/admin/talent-pool');
+    const data = await res.json();
+    setTalentPool(data);
   };
 
   const handleLogout = async () => {
@@ -144,7 +151,7 @@ export function AdminDashboardPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-7 gap-4 mb-8">
           {[
             { label: 'Jobs', value: jobs.length, icon: Eye, tab: 'jobs' },
             { label: 'Trash', value: trashedJobs.length, icon: Trash2, tab: 'trash' },
@@ -152,6 +159,7 @@ export function AdminDashboardPage() {
             { label: 'Alerts', value: alerts.length, icon: Bell, tab: 'alerts' },
             { label: 'Messages', value: contacts.length, icon: MessageSquare, tab: 'contacts' },
             { label: 'Portals', value: 0, icon: Eye, tab: 'tokens' },
+            { label: 'Talent Pool', value: talentPool.length, icon: Users, tab: 'talent' },
           ].map(stat => (
             <button
               key={stat.label}
@@ -382,6 +390,42 @@ export function AdminDashboardPage() {
           </div>
         )}
 
+{/* Talent Pool Tab */}
+{activeTab === 'talent' && (
+          <div>
+            <h2 className="font-heading font-bold text-xl text-shield-text-l uppercase mb-4">Talent Pool ({talentPool.length})</h2>
+            <div className="space-y-3">
+              {talentPool.length === 0 ? (
+                <div className="text-center py-12 text-shield-text-lm">No CV submissions yet.</div>
+              ) : talentPool.map((entry, i) => (
+                <div key={i} className="bg-white border-[1.5px] border-shield-border-l rounded-2xl p-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-bold text-shield-text-l">{entry.name}</h3>
+                    <span className="text-xs text-shield-text-lm">{new Date(entry.created_at).toLocaleDateString()}</span>
+                  </div>
+                  <p className="text-shield-text-lm text-sm mb-1">{entry.email}</p>
+                  <div className="flex gap-2 mb-2">
+                    {entry.job_function && <span className="text-xs bg-shield-navy-lt/10 text-shield-navy-lt px-2 py-0.5 rounded-full">{entry.job_function}</span>}
+                    {entry.location_preference && <span className="text-xs bg-shield-bg-light text-shield-text-lm px-2 py-0.5 rounded-full border border-shield-border-l">{entry.location_preference}</span>}
+                  </div>
+                  {entry.cv_url && (
+                    <button
+                      onClick={async () => {
+                        const res = await fetch(`/api/admin/cv-url/${entry.cv_url}`);
+                        const { url } = await res.json();
+                        window.open(url, '_blank');
+                      }}
+                      className="text-shield-navy-lt text-sm hover:underline"
+                    >
+                      Download CV →
+                    </button>
+                  )}
+                  {entry.message && <p className="text-shield-text-lm text-sm mt-2 border-t border-shield-border-l pt-2">{entry.message}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         {/* Contacts Tab */}
         {activeTab === 'contacts' && (
           <div>

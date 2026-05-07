@@ -217,6 +217,19 @@ async function startServer() {
     }
   });
 
+  app.get("/api/admin/talent-pool", async (req, res) => {
+    try {
+      const { data, error } = await supabaseAdmin
+        .from("talent_pool")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) return res.status(500).json({ error: "Failed to fetch talent pool" });
+      res.json(data || []);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch talent pool" });
+    }
+  });
+  
   app.get("/api/admin/contacts", async (req, res) => {
     try {
       const { data, error } = await supabaseAdmin
