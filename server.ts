@@ -363,6 +363,64 @@ async function startServer() {
     }
   });
   
+  app.post("/api/talent-pool", async (req, res) => {
+    try {
+      const { name, email, jobFunction, locationPreference, message, cvUrl } = req.body;
+
+      const { error } = await supabaseAdmin.from("talent_pool").insert([{
+        name,
+        email,
+        job_function: jobFunction,
+        location_preference: locationPreference,
+        message,
+        cv_url: cvUrl,
+      }]);
+
+      if (error) {
+        console.error("Supabase error (talent pool):", error);
+        return res.status(500).json({ error: "Failed to submit CV" });
+      }
+
+      // Notify you
+      await resend.emails.send({
+        from: 'DefJobs <noreply@contact.defjobs.eu>',
+        to: 'hello@defjobs.eu',
+        subject: `New CV submission: ${name}`,
+        html: `
+          <h2>New Talent Pool Submission 📋</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Function:</strong> ${jobFunction || '—'}</p>
+          <p><strong>Location:</strong> ${locationPreference || '—'}</p>
+          ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+          <p><strong>CV:</strong> ${cvUrl}</p>
+          <br/>
+          <a href="https://defjobs.eu/admin/dashboard">View in Admin Panel</a>
+        `
+      });
+
+      // Confirm to candidate
+      await resend.emails.send({
+        from: 'DefJobs <noreply@contact.defjobs.eu>',
+        to: email,
+        subject: 'CV received — DefJobs Talent Pool',
+        html: `
+          <h2>CV Received ✅</h2>
+          <p>Hi ${name},</p>
+          <p>Thank you for submitting your CV to the DefJobs talent pool. We'll keep your profile on file and reach out when a suitable defense or aerospace opportunity comes up.</p>
+          <p>In the meantime, browse open positions at <a href="https://defjobs.eu">defjobs.eu</a>.</p>
+          <br/>
+          <p>The DefJobs Team</p>
+        `
+      });
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Failed to submit CV" });
+    }
+  });
+  
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, message } = req.body;

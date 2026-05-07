@@ -15,6 +15,7 @@ import { AdminLoginPage } from '@/pages/AdminLoginPage';
 import { AdminDashboardPage } from '@/pages/AdminDashboardPage';
 import { PaymentSuccessPage } from '@/pages/PaymentSuccessPage';
 import { EmployerPortalPage } from '@/pages/EmployerPortalPage';
+import { SubmitCVPage } from '@/pages/SubmitCVPage';
 import { CookieBanner } from '@/components/CookieBanner';
 import { JobDetailPage } from '@/pages/JobDetailPage';
 import { Logo } from '@/components/Logo';
@@ -43,6 +44,7 @@ function AppContent() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
           <Route path="/employer/:token" element={<EmployerPortalPage />} />
+          <Route path="/submit-cv" element={<SubmitCVPage />} />
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         </Routes>
@@ -69,7 +71,7 @@ function AppContent() {
                 <li><Link to="/jobs" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_browse')}</Link></li>
                 <li><Link to="/companies" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_companies')}</Link></li>
                 <li><Link to="/salaries" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_salary')}</Link></li>
-                <li><a href="#" className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_cv')}</a></li>
+                <li><Link to="/submit-cv" onClick={() => window.scrollTo(0, 0)} className="text-shield-silver hover:text-shield-accent text-sm transition-colors">{t('footer_cv')}</Link></li>
               </ul>
             </div>
             
