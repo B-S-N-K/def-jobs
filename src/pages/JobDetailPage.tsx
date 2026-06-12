@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Clock, DollarSign, Briefcase, ChevronLeft, CheckCircle, Upload } from 'lucide-react';
+import { MapPin, Clock, Banknote, Briefcase, ChevronLeft, CheckCircle, Upload, Globe } from 'lucide-react';
 import { Job } from '@/types';
 import { useTranslation } from '@/lib/i18n';
 
@@ -123,7 +123,7 @@ export function JobDetailPage() {
                     {job.type}
                   </div>
                   <div className="flex items-center gap-2 bg-shield-bg-light px-4 py-2 rounded-lg border border-shield-border-l">
-                    <DollarSign className="h-4 w-4" />
+                    <Banknote className="h-4 w-4" />
                     {job.salary}
                   </div>
                   <div className="flex items-center gap-2 bg-shield-bg-light px-4 py-2 rounded-lg border border-shield-border-l">
@@ -136,7 +136,7 @@ export function JobDetailPage() {
               <div className="p-8">
                 {job.language && job.language !== lang && (
                   <div className="flex items-center gap-2 text-xs text-shield-text-lm bg-shield-bg-light border border-shield-border-l rounded-lg px-3 py-2 mb-4">
-                    <span>🌐</span>
+                    <Globe className="h-3.5 w-3.5" />
                     <span>{t('job_lang_notice')}</span>
                   </div>
                 )}

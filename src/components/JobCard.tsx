@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, DollarSign, Briefcase } from 'lucide-react';
+import { MapPin, Clock, Banknote, Briefcase } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Job } from '@/types';
 import { useTranslation } from '@/lib/i18n';
@@ -40,7 +40,7 @@ export const JobCard: React.FC<{ job: Job }> = ({ job }) => {
             {job.location}
           </div>
           <div className="flex items-center gap-1.5">
-            <DollarSign className="h-3.5 w-3.5" />
+            <Banknote className="h-3.5 w-3.5" />
             {job.salary}
           </div>
           <div className="flex items-center gap-1.5">

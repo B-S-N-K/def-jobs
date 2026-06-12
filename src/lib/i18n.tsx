@@ -183,7 +183,7 @@ export const translations = {
     new_pricing_badge: 'Každý inzerát zahrnuje placenou propagaci na sociálních sítích',
     new_pricing_h1: 'Defense Talent. Delivered.',
     new_pricing_sub: 'Oslovte kvalifikované odborníky v oblasti obrany a letectví po celé Evropě. Každý plán zahrnuje sociální kampaň - žádný jiný evropský pracovní portál pro obranu toto nenabízí.',
-    new_pricing_launch: '🚀 Launch Period - Zveřejněte první inzerát zdarma',
+    new_pricing_launch: 'Launch Period - Zveřejněte první inzerát zdarma',
     new_pricing_compare_show: 'Porovnat všechny funkce',
     new_pricing_compare_hide: 'Skrýt funkce',
     new_pricing_usp_title: 'Proč je sociální média součástí každého plánu',
@@ -309,7 +309,7 @@ export const translations = {
     comp_2w_optimized: '2 týdny, optimalizovaná',
     comp_20_unlocks: '20 odemčení',
     comp_unlimited: 'Neomezený',
-    alert_success: '✅ Upozornění bylo úspěšně vytvořeno!',
+    alert_success: 'Upozornění bylo úspěšně vytvořeno!',
   },
   en: {
     // Navbar
@@ -491,7 +491,7 @@ export const translations = {
     new_pricing_badge: 'Every listing includes paid social media promotion',
     new_pricing_h1: 'Defense Talent. Delivered.',
     new_pricing_sub: 'Reach qualified defense and aerospace professionals across Europe. Every plan includes a social media campaign - no other European defense job board offers this.',
-    new_pricing_launch: '🚀 Launch Period - Post your first listing for free',
+    new_pricing_launch: 'Launch Period - Post your first listing for free',
     new_pricing_compare_show: 'Compare all features',
     new_pricing_compare_hide: 'Hide features',
     new_pricing_usp_title: 'Why social media is included in every plan',
@@ -617,7 +617,7 @@ export const translations = {
     comp_2w_optimized: '2 weeks, optimized',
     comp_20_unlocks: '20 unlocks',
     comp_unlimited: 'Unlimited',
-    alert_success: '✅ Alert created successfully!',
+    alert_success: 'Alert created successfully!',
   }
 };
 

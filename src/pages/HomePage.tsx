@@ -112,8 +112,7 @@ export function HomePage({ scrollToJobs = false }: { scrollToJobs?: boolean }) {
         }}></div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 bg-shield-navy-lt/10 border border-shield-navy-lt/40 text-shield-accent text-xs font-semibold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-shield-accent animate-pulse"></span>
+        <div className="inline-flex items-center bg-shield-navy-lt/10 border border-shield-navy-lt/40 text-shield-accent text-xs font-semibold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest">
             {t('hero_badge')}
           </div>
           
